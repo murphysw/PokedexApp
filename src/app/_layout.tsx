@@ -1,21 +1,27 @@
 import { DarkTheme, DefaultTheme, Stack, ThemeProvider } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
 import { useColorScheme } from 'react-native';
 
 import { AppProvider } from '../../context/AppContext';
-import { AnimatedSplashOverlay } from '@/components/animated-icon';
+import AppNavigationMenu from '@/components/app-navigation-menu';
 
-SplashScreen.preventAutoHideAsync();
-
-export default function TabLayout() {
+export default function RootLayout() {
   const colorScheme = useColorScheme();
+  const theme = colorScheme === 'dark' ? DarkTheme : DefaultTheme;
   return (
     <AppProvider>
-      <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-        <AnimatedSplashOverlay />
-        <Stack initialRouteName="(tabs)" screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="(tabs)" />
-          <Stack.Screen name="pokemon/[id]" />
+      <ThemeProvider value={theme}>
+        <Stack
+          initialRouteName="(tabs)"
+          screenOptions={{
+            headerShown: true,
+            headerLeft: () => <AppNavigationMenu />,
+            headerStyle: { backgroundColor: theme.colors.card },
+            headerTintColor: theme.colors.text,
+            headerShadowVisible: false,
+            contentStyle: { backgroundColor: theme.colors.background },
+          }}>
+          <Stack.Screen name="(tabs)" options={{ title: 'Pokédex' }} />
+          <Stack.Screen name="pokemon/[id]" options={{ title: 'Pokémon' }} />
         </Stack>
       </ThemeProvider>
     </AppProvider>

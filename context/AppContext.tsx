@@ -3,12 +3,18 @@ import { createContext, useCallback, useContext, useEffect, useRef, useState, ty
 
 type StatusMap = Record<string, boolean>;
 type StatusType = 'caught' | 'livingDex';
+export type StatusFilter = 'all' | 'marked' | 'unmarked';
+export type ListFilterSettings = { caught: StatusFilter; livingDex: StatusFilter };
+
+const DEFAULT_LIST_FILTERS: ListFilterSettings = { caught: 'all', livingDex: 'all' };
 
 type AppContextValue = {
 	activeGame: string;
 	caughtMap: StatusMap;
 	livingDexMap: StatusMap;
+	listFilters: ListFilterSettings;
 	setActiveGame: (gameId: string) => Promise<void>;
+	setListFilters: (filters: Partial<ListFilterSettings>) => Promise<void>;
 	toggleCaught: (gameId: string, pokemonId: number) => Promise<void>;
 	toggleLivingDex: (gameId: string, pokemonId: number) => Promise<void>;
 	batchUpdateStatus: (gameId: string, pokemonIds: number[], statusType: StatusType, value: boolean) => Promise<void>;
@@ -18,6 +24,7 @@ const STORAGE_KEYS = {
 	activeGame: '@pokedex/activeGame',
 	caughtMap: '@pokedex/caughtMap',
 	livingDexMap: '@pokedex/livingDexMap',
+	listFilters: '@pokedex/listFilters',
 } as const;
 
 const AppContext = createContext<AppContextValue | undefined>(undefined);
@@ -36,13 +43,32 @@ function parseStatusMap(value: string | null): StatusMap {
 	}
 }
 
+function parseListFilters(value: string | null): ListFilterSettings {
+	if (!value) return DEFAULT_LIST_FILTERS;
+	try {
+		const parsed: unknown = JSON.parse(value);
+		if (typeof parsed !== 'object' || parsed === null || Array.isArray(parsed)) return DEFAULT_LIST_FILTERS;
+		const filters = parsed as Partial<ListFilterSettings>;
+		const validFilter = (filter: unknown): filter is StatusFilter =>
+			filter === 'all' || filter === 'marked' || filter === 'unmarked';
+		return {
+			caught: validFilter(filters.caught) ? filters.caught : 'all',
+			livingDex: validFilter(filters.livingDex) ? filters.livingDex : 'all',
+		};
+	} catch {
+		return DEFAULT_LIST_FILTERS;
+	}
+}
+
 export function AppProvider({ children }: { children: ReactNode }) {
 	const [activeGame, setActiveGameState] = useState('soulsilver');
 	const [caughtMap, setCaughtMap] = useState<StatusMap>({});
 	const [livingDexMap, setLivingDexMap] = useState<StatusMap>({});
+	const [listFilters, setListFiltersState] = useState<ListFilterSettings>(DEFAULT_LIST_FILTERS);
 	const activeGameRef = useRef(activeGame);
 	const caughtMapRef = useRef(caughtMap);
 	const livingDexMapRef = useRef(livingDexMap);
+	const listFiltersRef = useRef(listFilters);
 	const hydrationRef = useRef<Promise<void> | null>(null);
 	const mountedRef = useRef(true);
 	const writeQueueRef = useRef<Promise<void>>(Promise.resolve());
@@ -53,17 +79,21 @@ export function AppProvider({ children }: { children: ReactNode }) {
 				AsyncStorage.getItem(STORAGE_KEYS.activeGame),
 				AsyncStorage.getItem(STORAGE_KEYS.caughtMap),
 				AsyncStorage.getItem(STORAGE_KEYS.livingDexMap),
-			]).then(([storedGame, storedCaught, storedLivingDex]) => {
+				AsyncStorage.getItem(STORAGE_KEYS.listFilters),
+			]).then(([storedGame, storedCaught, storedLivingDex, storedFilters]) => {
 				if (!mountedRef.current) return;
 				const nextGame = storedGame || 'soulsilver';
 				const nextCaught = parseStatusMap(storedCaught);
 				const nextLivingDex = parseStatusMap(storedLivingDex);
+				const nextFilters = parseListFilters(storedFilters);
 				activeGameRef.current = nextGame;
 				caughtMapRef.current = nextCaught;
 				livingDexMapRef.current = nextLivingDex;
+				listFiltersRef.current = nextFilters;
 				setActiveGameState(nextGame);
 				setCaughtMap(nextCaught);
 				setLivingDexMap(nextLivingDex);
+				setListFiltersState(nextFilters);
 			}).catch(() => undefined);
 		}
 		return hydrationRef.current;
@@ -88,6 +118,14 @@ export function AppProvider({ children }: { children: ReactNode }) {
 		activeGameRef.current = gameId;
 		setActiveGameState(gameId);
 		await persist(STORAGE_KEYS.activeGame, gameId);
+	}, [ensureHydrated, persist]);
+
+	const setListFilters = useCallback(async (filters: Partial<ListFilterSettings>) => {
+		await ensureHydrated();
+		const nextFilters = { ...listFiltersRef.current, ...filters };
+		listFiltersRef.current = nextFilters;
+		setListFiltersState(nextFilters);
+		await persist(STORAGE_KEYS.listFilters, JSON.stringify(nextFilters));
 	}, [ensureHydrated, persist]);
 
 	const updateStatus = useCallback(async (
@@ -131,7 +169,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
 
 	return (
 		<AppContext.Provider
-			value={{ activeGame, caughtMap, livingDexMap, setActiveGame, toggleCaught, toggleLivingDex, batchUpdateStatus }}
+			value={{ activeGame, caughtMap, livingDexMap, listFilters, setActiveGame, setListFilters, toggleCaught, toggleLivingDex, batchUpdateStatus }}
 		>
 			{children}
 		</AppContext.Provider>

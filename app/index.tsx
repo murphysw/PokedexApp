@@ -15,7 +15,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import pokemonData from '../assets/data/pokemon.json';
 import { GAMES, GAME_IDS, getRegionalDexKeys, type GameId } from '../constants/games';
-import { useAppContext } from '../context/AppContext';
+import { useAppContext, type StatusFilter } from '../context/AppContext';
 import { MaxContentWidth, Spacing } from '../src/constants/theme';
 import { useTheme } from '../src/hooks/use-theme';
 
@@ -53,7 +53,9 @@ export default function PokedexListScreen() {
 		activeGame,
 		caughtMap,
 		livingDexMap,
+		listFilters,
 		setActiveGame,
+		setListFilters,
 		toggleCaught,
 		toggleLivingDex,
 		batchUpdateStatus,
@@ -61,6 +63,7 @@ export default function PokedexListScreen() {
 	const [mode, setMode] = useState<ListMode>('local');
 	const [query, setQuery] = useState('');
 	const [bulkEdit, setBulkEdit] = useState(false);
+	const [filtersVisible, setFiltersVisible] = useState(false);
 	const [selectedIds, setSelectedIds] = useState<Set<number>>(() => new Set());
 	const [gamePickerVisible, setGamePickerVisible] = useState(false);
 	const [feedback, setFeedback] = useState('');
@@ -84,22 +87,51 @@ export default function PokedexListScreen() {
 		});
 	}, [mode, regionalKeys]);
 
+	const statusFilteredRecords = useMemo(() => roster.filter((pokemon) => {
+		const caught = Boolean(caughtMap[`${validGameId}_${pokemon.id}`]);
+		const livingDex = Boolean(livingDexMap[`${validGameId}_${pokemon.id}`]);
+		const matchesCaught = listFilters.caught === 'all'
+			|| (listFilters.caught === 'marked' && caught)
+			|| (listFilters.caught === 'unmarked' && !caught);
+		const matchesLivingDex = listFilters.livingDex === 'all'
+			|| (listFilters.livingDex === 'marked' && livingDex)
+			|| (listFilters.livingDex === 'unmarked' && !livingDex);
+		return matchesCaught && matchesLivingDex;
+	}), [roster, caughtMap, livingDexMap, validGameId, listFilters]);
+
 	const visibleRecords = useMemo(() => {
 		const normalizedQuery = query.trim().toLowerCase();
-		if (!normalizedQuery) return roster;
-		return roster.filter((pokemon) => {
-			const dexNumbers = Object.values(pokemon.localDexNumbers).join(' ');
-			return pokemon.name.includes(normalizedQuery)
-				|| String(pokemon.nationalNo).includes(normalizedQuery)
-				|| dexNumbers.includes(normalizedQuery);
-		});
-	}, [query, roster]);
+		if (!normalizedQuery) return statusFilteredRecords;
+		const numericQuery = normalizedQuery.replace(/^#/, '');
+		if (/^\d+$/.test(numericQuery)) {
+			const ranked = statusFilteredRecords.flatMap((pokemon) => {
+				const nationalNumber = String(pokemon.nationalNo);
+				const localNumbers = mode === 'local'
+					? regionalKeys.map((key) => pokemon.localDexNumbers[key]).filter((value) => value !== undefined).map(String)
+					: [];
+				let rank: number | undefined;
+				if (localNumbers.some((value) => value === numericQuery)) rank = 0;
+				else if (nationalNumber === numericQuery) rank = 1;
+				else if (localNumbers.some((value) => value.startsWith(numericQuery))) rank = 2;
+				else if (nationalNumber.startsWith(numericQuery)) rank = 3;
+				return rank === undefined ? [] : [{ pokemon, rank }];
+			});
+		return ranked.sort((first, second) => first.rank - second.rank).map(({ pokemon }) => pokemon);
+		}
+		return statusFilteredRecords
+			.filter((pokemon) => pokemon.name.includes(normalizedQuery))
+			.sort((first, second) => {
+				const rank = (pokemon: PokemonRecord) => pokemon.name === normalizedQuery ? 0 : pokemon.name.startsWith(normalizedQuery) ? 1 : 2;
+				return rank(first) - rank(second);
+			});
+	}, [query, statusFilteredRecords, mode, regionalKeys]);
 
 	const statusKey = (pokemonId: number) => `${validGameId}_${pokemonId}`;
 	const caughtCount = roster.filter((pokemon) => caughtMap[statusKey(pokemon.id)]).length;
 	const livingDexCount = roster.filter((pokemon) => livingDexMap[statusKey(pokemon.id)]).length;
 	const allVisibleSelected = visibleRecords.length > 0
 		&& visibleRecords.every((pokemon) => selectedIds.has(pokemon.id));
+	const activeFilterCount = Number(listFilters.caught !== 'all') + Number(listFilters.livingDex !== 'all');
 
 	const changeMode = (nextMode: ListMode) => {
 		setMode(nextMode);
@@ -112,6 +144,12 @@ export default function PokedexListScreen() {
 		setSelectedIds(new Set());
 		setFeedback('');
 		setGamePickerVisible(false);
+	};
+
+	const updateFilter = (key: 'caught' | 'livingDex', value: StatusFilter) => {
+		void setListFilters({ [key]: value });
+		setSelectedIds(new Set());
+		setFeedback('');
 	};
 
 	const toggleSelectAll = () => {
@@ -169,7 +207,10 @@ export default function PokedexListScreen() {
 				<Pressable
 					accessibilityRole="link"
 					accessibilityLabel={`Open ${titleCase(item.name)}, National number ${item.nationalNo}`}
-					onPress={() => router.push({ pathname: '/pokemon/[id]', params: { id: String(item.id) } })}
+					onPress={() => router.push({
+						pathname: '/pokemon/[id]',
+						params: { id: String(item.id), listMode: mode, regionKey: mode === 'local' ? localDexKey ?? '' : '' },
+					})}
 					style={({ pressed }) => [styles.pokemonMain, { opacity: pressed ? 0.72 : 1 }]}>
 					<View style={[styles.spriteFrame, { backgroundColor: theme.backgroundElement }]}>
 						{sprite ? (
@@ -269,6 +310,23 @@ export default function PokedexListScreen() {
 							style={[styles.searchInput, { color: theme.text, backgroundColor: theme.backgroundElement, borderColor: theme.backgroundSelected }]}
 						/>
 					</View>
+					<View style={styles.filterToggleRow}>
+						<Pressable
+							accessibilityRole="button"
+							accessibilityState={{ expanded: filtersVisible }}
+							onPress={() => setFiltersVisible((current) => !current)}
+							style={({ pressed }) => [styles.filterToggle, { backgroundColor: theme.backgroundElement, opacity: pressed ? 0.72 : 1 }]}>
+							<Text style={[styles.filterToggleText, { color: theme.text }]}>Filters{activeFilterCount ? ` · ${activeFilterCount}` : ''}</Text>
+							<Text style={[styles.filterToggleArrow, { color: theme.textSecondary }]}>{filtersVisible ? '−' : '+'}</Text>
+						</Pressable>
+						<Text style={[styles.resultsCount, { color: theme.textSecondary }]}>{visibleRecords.length} results</Text>
+					</View>
+					{filtersVisible && (
+						<View style={[styles.filtersPanel, { backgroundColor: theme.backgroundElement, borderColor: theme.backgroundSelected }]}>
+							<FilterGroup label="Caught" value={listFilters.caught} onChange={(value) => updateFilter('caught', value)} theme={theme} />
+							<FilterGroup label="Living Dex" value={listFilters.livingDex} onChange={(value) => updateFilter('livingDex', value)} theme={theme} />
+						</View>
+					)}
 					{bulkEdit && (
 						<Pressable
 							accessibilityRole="checkbox"
@@ -277,7 +335,7 @@ export default function PokedexListScreen() {
 							style={styles.selectAllRow}>
 							<CheckboxMark checked={allVisibleSelected} theme={theme} />
 							<Text style={[styles.selectAllText, { color: theme.text }]}>Select All</Text>
-							<Text style={[styles.selectAllCount, { color: theme.textSecondary }]}>{visibleRecords.length} visible</Text>
+							<Text style={[styles.selectAllCount, { color: theme.textSecondary }]}>{visibleRecords.length} results</Text>
 						</Pressable>
 					)}
 				</View>
@@ -357,6 +415,44 @@ function StatusCheckbox({ label, checked, onPress, theme }: { label: string; che
 			<CheckboxMark checked={checked} theme={theme} />
 			<Text style={[styles.statusLabel, { color: checked ? theme.text : theme.textSecondary }]}>{label}</Text>
 		</Pressable>
+	);
+}
+
+function FilterGroup({
+	label,
+	value,
+	onChange,
+	theme,
+}: {
+	label: string;
+	value: StatusFilter;
+	onChange: (value: StatusFilter) => void;
+	theme: ReturnType<typeof useTheme>;
+}) {
+	const options: { value: StatusFilter; label: string }[] = [
+		{ value: 'all', label: 'All' },
+		{ value: 'marked', label: label === 'Caught' ? 'Caught' : 'Living' },
+		{ value: 'unmarked', label: label === 'Caught' ? 'Uncaught' : 'Not living' },
+	];
+	return (
+		<View style={styles.filterGroup}>
+			<Text style={[styles.filterLabel, { color: theme.textSecondary }]}>{label}</Text>
+			<View style={styles.filterOptions} accessibilityRole="radiogroup" accessibilityLabel={`${label} filter`}>
+				{options.map((option) => {
+					const selected = value === option.value;
+					return (
+						<Pressable
+							key={option.value}
+							accessibilityRole="radio"
+							accessibilityState={{ checked: selected }}
+							onPress={() => onChange(option.value)}
+							style={[styles.filterOption, { backgroundColor: selected ? theme.text : theme.background, borderColor: selected ? theme.text : theme.backgroundSelected }]}>
+							<Text style={[styles.filterOptionText, { color: selected ? theme.background : theme.text }]}>{option.label}</Text>
+						</Pressable>
+					);
+				})}
+			</View>
+		</View>
 	);
 }
 
@@ -455,6 +551,17 @@ const styles = StyleSheet.create({
 	modeButton: { minHeight: 34, justifyContent: 'center', paddingHorizontal: Spacing.two, borderRadius: 4 },
 	modeText: { fontSize: 12, fontWeight: '700' },
 	searchInput: { flex: 1, minWidth: 0, height: 40, borderWidth: 1, borderRadius: 5, paddingHorizontal: Spacing.two, fontSize: 14 },
+	filterToggleRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', minHeight: 36 },
+	filterToggle: { minHeight: 34, flexDirection: 'row', alignItems: 'center', gap: Spacing.two, paddingHorizontal: Spacing.two, borderRadius: 5 },
+	filterToggleText: { fontSize: 12, fontWeight: '700' },
+	filterToggleArrow: { fontSize: 16, fontWeight: '700' },
+	resultsCount: { fontSize: 11 },
+	filtersPanel: { gap: Spacing.two, borderWidth: 1, borderRadius: 5, padding: Spacing.two },
+	filterGroup: { gap: Spacing.one },
+	filterLabel: { fontSize: 10, fontWeight: '700', textTransform: 'uppercase' },
+	filterOptions: { flexDirection: 'row', gap: Spacing.one },
+	filterOption: { minHeight: 34, flex: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: Spacing.one, borderWidth: 1, borderRadius: 4 },
+	filterOptionText: { fontSize: 11, fontWeight: '700' },
 	selectAllRow: { minHeight: 42, flexDirection: 'row', alignItems: 'center', gap: Spacing.two, paddingHorizontal: Spacing.three },
 	selectAllText: { fontSize: 13, fontWeight: '700' },
 	selectAllCount: { marginLeft: 'auto', fontSize: 11 },

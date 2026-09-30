@@ -43,32 +43,39 @@ export function AppProvider({ children }: { children: ReactNode }) {
 	const activeGameRef = useRef(activeGame);
 	const caughtMapRef = useRef(caughtMap);
 	const livingDexMapRef = useRef(livingDexMap);
-	const hydrationRef = useRef<Promise<void>>(Promise.resolve());
+	const hydrationRef = useRef<Promise<void> | null>(null);
+	const mountedRef = useRef(true);
 	const writeQueueRef = useRef<Promise<void>>(Promise.resolve());
 
-	useEffect(() => {
-		let mounted = true;
-		hydrationRef.current = Promise.all([
-			AsyncStorage.getItem(STORAGE_KEYS.activeGame),
-			AsyncStorage.getItem(STORAGE_KEYS.caughtMap),
-			AsyncStorage.getItem(STORAGE_KEYS.livingDexMap),
-		]).then(([storedGame, storedCaught, storedLivingDex]) => {
-			if (!mounted) return;
-			const nextGame = storedGame || 'soulsilver';
-			const nextCaught = parseStatusMap(storedCaught);
-			const nextLivingDex = parseStatusMap(storedLivingDex);
-			activeGameRef.current = nextGame;
-			caughtMapRef.current = nextCaught;
-			livingDexMapRef.current = nextLivingDex;
-			setActiveGameState(nextGame);
-			setCaughtMap(nextCaught);
-			setLivingDexMap(nextLivingDex);
-		}).catch(() => undefined);
-
-		return () => {
-			mounted = false;
-		};
+	const ensureHydrated = useCallback(() => {
+		if (!hydrationRef.current) {
+			hydrationRef.current = Promise.all([
+				AsyncStorage.getItem(STORAGE_KEYS.activeGame),
+				AsyncStorage.getItem(STORAGE_KEYS.caughtMap),
+				AsyncStorage.getItem(STORAGE_KEYS.livingDexMap),
+			]).then(([storedGame, storedCaught, storedLivingDex]) => {
+				if (!mountedRef.current) return;
+				const nextGame = storedGame || 'soulsilver';
+				const nextCaught = parseStatusMap(storedCaught);
+				const nextLivingDex = parseStatusMap(storedLivingDex);
+				activeGameRef.current = nextGame;
+				caughtMapRef.current = nextCaught;
+				livingDexMapRef.current = nextLivingDex;
+				setActiveGameState(nextGame);
+				setCaughtMap(nextCaught);
+				setLivingDexMap(nextLivingDex);
+			}).catch(() => undefined);
+		}
+		return hydrationRef.current;
 	}, []);
+
+	useEffect(() => {
+		mountedRef.current = true;
+		void ensureHydrated();
+		return () => {
+			mountedRef.current = false;
+		};
+	}, [ensureHydrated]);
 
 	const persist = useCallback((key: string, value: string) => {
 		const write = writeQueueRef.current.then(() => AsyncStorage.setItem(key, value));
@@ -77,11 +84,11 @@ export function AppProvider({ children }: { children: ReactNode }) {
 	}, []);
 
 	const setActiveGame = useCallback(async (gameId: string) => {
-		await hydrationRef.current;
+		await ensureHydrated();
 		activeGameRef.current = gameId;
 		setActiveGameState(gameId);
 		await persist(STORAGE_KEYS.activeGame, gameId);
-	}, [persist]);
+	}, [ensureHydrated, persist]);
 
 	const updateStatus = useCallback(async (
 		gameId: string,
@@ -90,7 +97,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
 		value: boolean,
 		toggle: boolean,
 	) => {
-		await hydrationRef.current;
+		await ensureHydrated();
 		const mapRef = statusType === 'caught' ? caughtMapRef : livingDexMapRef;
 		const setMap = statusType === 'caught' ? setCaughtMap : setLivingDexMap;
 		const storageKey = statusType === 'caught' ? STORAGE_KEYS.caughtMap : STORAGE_KEYS.livingDexMap;
@@ -104,7 +111,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
 		mapRef.current = nextMap;
 		setMap(nextMap);
 		await persist(storageKey, JSON.stringify(nextMap));
-	}, [persist]);
+	}, [ensureHydrated, persist]);
 
 	const toggleCaught = useCallback(
 		(gameId: string, pokemonId: number) => updateStatus(gameId, [pokemonId], 'caught', false, true),

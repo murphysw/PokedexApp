@@ -139,11 +139,12 @@ export default function PokedexListScreen() {
 		setFeedback('');
 	};
 
-	const changeGame = async (gameId: GameId) => {
-		await setActiveGame(gameId);
-		setSelectedIds(new Set());
-		setFeedback('');
+	const changeGame = (gameId: GameId) => {
 		setGamePickerVisible(false);
+		setSelectedIds(new Set());
+		void setActiveGame(gameId)
+			.then(() => setFeedback(''))
+			.catch(() => setFeedback('Could not save the active game. Try again.'));
 	};
 
 	const updateFilter = (key: 'caught' | 'livingDex', value: StatusFilter) => {

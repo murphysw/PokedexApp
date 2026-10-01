@@ -156,16 +156,21 @@ function getEvolutionLine(pokemon: PokemonRecord) {
 		parentName: ancestors[index].name,
 	}));
 	const visited = new Set(ancestors.map((entry) => entry.id));
+	const expanded = new Set<number>();
 	const visitDescendants = (parent: PokemonRecord) => {
+		if (expanded.has(parent.id)) return;
+		expanded.add(parent.id);
 		for (const edge of parent.evolutions) {
 			const child = POKEMON_BY_ID.get(edge.id);
-			if (!child || visited.has(child.id)) continue;
-			visited.add(child.id);
-			steps.push({ pokemon: child, details: edge.details, parentName: parent.name });
+			if (!child) continue;
+			if (!visited.has(child.id)) {
+				visited.add(child.id);
+				steps.push({ pokemon: child, details: edge.details, parentName: parent.name });
+			}
 			visitDescendants(child);
 		}
 	};
-	visitDescendants(pokemon);
+	visitDescendants(root);
 	return { root, steps };
 }
 

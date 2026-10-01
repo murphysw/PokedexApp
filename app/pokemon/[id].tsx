@@ -82,6 +82,26 @@ type MoveRecord = {
 	}[];
 };
 
+type EncounterDetail = {
+	minLevel: number;
+	maxLevel: number;
+	chance: number;
+	method: string | null;
+	conditions: string[];
+};
+
+type LocationVersionDetail = {
+	version: string;
+	maxChance: number;
+	encounterDetails: EncounterDetail[];
+};
+
+type LocationIndexRecord = {
+	id: number;
+	name: string;
+	pokemon: { pokemonId: number; versionDetails: LocationVersionDetail[] }[];
+};
+
 type SectionKey = 'stats' | 'forms' | 'abilities' | 'evolution' | 'locations' | 'moves';
 type LearnableMove = {
 	move: MoveRecord;
@@ -166,6 +186,10 @@ function titleCase(value: string) {
 		.join(' ');
 }
 
+function shortGameName(value: string) {
+	return value.replace(/^Pokémon\s*:?\s*/i, '');
+}
+
 function toRomanNumeral(value: number) {
 	const numerals: [number, string][] = [
 		[1000, 'M'], [900, 'CM'], [500, 'D'], [400, 'CD'], [100, 'C'], [90, 'XC'],
@@ -241,7 +265,6 @@ function describeEvolution(detail: EvolutionDetail) {
 	if (detail.relative_physical_stats === 0) conditions.push('Attack equals Defense');
 	if (detail.needs_overworld_rain) conditions.push('Rain in the overworld');
 	if (detail.turn_upside_down) conditions.push('Turn the device upside down');
-	if (detail.version_group) conditions.push(`In ${titleCase(detail.version_group)}`);
 	return conditions.length ? conditions.join(' · ') : 'No additional condition listed';
 }
 
@@ -303,6 +326,9 @@ export default function PokemonDetailScreen() {
 	const [section, setSection] = useState<SectionKey>('stats');
 	const [selectedMegaId, setSelectedMegaId] = useState<number | null>(null);
 	const [selectedMove, setSelectedMove] = useState<LearnableMove | null>(null);
+	const [selectedLocationId, setSelectedLocationId] = useState<number | null>(null);
+	const [locationIndex, setLocationIndex] = useState<LocationIndexRecord[] | null>(null);
+	const [locationIndexError, setLocationIndexError] = useState(false);
 	const [matchupVisible, setMatchupVisible] = useState(false);
 	const [matchupMode, setMatchupMode] = useState<'defense' | 'offense'>('defense');
 	const [selectedGeneration, setSelectedGeneration] = useState<{ pokemonId: number; gameId: string; listMode: string; generation: number } | null>(null);
@@ -363,11 +389,7 @@ export default function PokemonDetailScreen() {
 	const rawEvolutionLine = pokemon ? getEvolutionLine(pokemon) : undefined;
 	const evolutionSteps = rawEvolutionLine?.steps
 		.filter((step) => (SPECIES_GENERATIONS[step.pokemon.generation] ?? 1) <= (selectedDexEntry?.generation ?? 7))
-		.filter((step) => !step.details.length || step.details.some((detail) => !detail.version_group || detail.version_group === detailGame.versionGroupEngineKey))
-		.map((step) => ({
-			...step,
-			details: step.details.filter((detail) => !detail.version_group || detail.version_group === detailGame.versionGroupEngineKey),
-		})) ?? [];
+		?? [];
 	const evolutionLine = rawEvolutionLine ? { ...rawEvolutionLine, steps: evolutionSteps } : undefined;
 	const activeListRegion = listMode === 'local' && regionKeyParam && DEX_GENERATIONS[regionKeyParam]
 		? regionKeyParam
@@ -418,6 +440,15 @@ export default function PokemonDetailScreen() {
 			regionKey: listMode === 'local' ? activeListRegion : '',
 		},
 	});
+
+	const openLocation = (locationId: number) => {
+		setSelectedLocationId(locationId);
+		if (locationIndex) return;
+		setLocationIndexError(false);
+		void import('../../assets/data/locations.json')
+			.then(({ default: records }) => setLocationIndex(records as unknown as LocationIndexRecord[]))
+			.catch(() => setLocationIndexError(true));
+	};
 
 	if (!pokemon || !displayedStats) {
 		return (
@@ -574,16 +605,19 @@ export default function PokemonDetailScreen() {
 								<Text style={[styles.rowDetail, { color: theme.textSecondary }]}>Base catch rate: {pokemon.catchRate} / 255</Text>
 							)}
 							{gameLocations.length ? gameLocations.map((location) => (
-								<View key={location.locationAreaId} style={styles.locationEntry}>
-									<View style={[styles.listRow, { borderBottomColor: theme.backgroundSelected }]}>
-										<View style={styles.listCopy}>
-											<Text style={[styles.rowTitle, { color: theme.text }]}>{titleCase(location.locationArea)}</Text>
-											<Text style={[styles.rowDetail, { color: theme.textSecondary }]}>{location.versions.map((version) => GAMES[version as GameId]?.displayName ?? titleCase(version)).join(', ')}</Text>
-										</View>
-										<Text style={[styles.rowId, { color: theme.textSecondary }]}>#{location.locationAreaId}</Text>
+								<Pressable
+									key={location.locationAreaId}
+									accessibilityRole="button"
+									accessibilityLabel={`Show encounter rates for ${titleCase(location.locationArea)}`}
+									onPress={() => openLocation(location.locationAreaId)}
+									style={({ pressed }) => [styles.listRow, { borderBottomColor: theme.backgroundSelected, opacity: pressed ? 0.7 : 1 }]}>
+									<View style={styles.listCopy}>
+										<Text style={[styles.rowTitle, { color: theme.text }]}>{titleCase(location.locationArea)}</Text>
+										<Text style={[styles.rowDetail, { color: theme.textSecondary }]}>{location.versions.map((version) => shortGameName(GAMES[version as GameId]?.displayName ?? titleCase(version))).join(', ')}</Text>
 									</View>
-								</View>
-							)) : <EmptyState text={`No encounter areas are recorded for ${game.displayName}.`} theme={theme} />}
+									<Text style={[styles.rowChevron, { color: theme.textSecondary }]}>›</Text>
+								</Pressable>
+							)) : <EmptyState text={`No encounter areas are recorded for ${detailGame.displayName}.`} theme={theme} />}
 						</View>
 					)}
 
@@ -653,6 +687,15 @@ export default function PokemonDetailScreen() {
 
 			<TypeMatchupModal visible={matchupVisible} types={typeSelection} mode={matchupMode} onModeChange={setMatchupMode} onClose={() => setMatchupVisible(false)} theme={theme} />
 			<MoveModal move={selectedMove?.move ?? null} onClose={() => setSelectedMove(null)} theme={theme} />
+			<LocationModal
+				visible={selectedLocationId !== null}
+				location={locationIndex?.find((entry) => entry.id === selectedLocationId)}
+				pokemonId={pokemon.id}
+				loading={selectedLocationId !== null && locationIndex === null && !locationIndexError}
+				error={locationIndexError}
+				onClose={() => setSelectedLocationId(null)}
+				theme={theme}
+			/>
 		</SafeAreaView>
 	);
 }
@@ -757,7 +800,69 @@ function TypeMatchupModal({
 	);
 }
 
-function MoveModal({ move, onClose, theme }: { move: MoveRecord | null; onClose: () => void; theme: ReturnType<typeof useTheme> }) {
+	function LocationModal({
+		visible,
+		location,
+		pokemonId,
+		loading,
+		error,
+		onClose,
+		theme,
+	}: {
+		visible: boolean;
+		location?: LocationIndexRecord;
+		pokemonId: number;
+		loading: boolean;
+		error: boolean;
+		onClose: () => void;
+		theme: ReturnType<typeof useTheme>;
+	}) {
+		const encounter = location?.pokemon?.find((entry) => entry.pokemonId === pokemonId);
+		const versionDetails = encounter?.versionDetails ?? [];
+		return (
+			<Modal visible={visible} transparent animationType="slide" onRequestClose={onClose}>
+				<View style={styles.modalBackdrop}>
+					<Pressable style={StyleSheet.absoluteFill} onPress={onClose} accessibilityRole="button" accessibilityLabel="Close location details" />
+					<View style={[styles.modalSheet, { backgroundColor: theme.background, borderColor: theme.backgroundSelected }]}>
+						<ScrollView contentContainerStyle={styles.modalContent}>
+							<View style={styles.modalHeader}>
+								<View style={styles.listCopy}>
+									<Text style={[styles.eyebrow, { color: theme.textSecondary }]}>ENCOUNTER DETAILS</Text>
+									<Text style={[styles.modalTitle, { color: theme.text }]}>{location ? titleCase(location.name) : 'Location'}</Text>
+								</View>
+								<Pressable onPress={onClose} accessibilityRole="button" accessibilityLabel="Close location details" style={[styles.closeButton, { backgroundColor: theme.backgroundElement }]}>
+									<Text style={[styles.closeText, { color: theme.text }]}>Close</Text>
+								</Pressable>
+							</View>
+							{loading ? <EmptyState text="Loading encounter details..." theme={theme} />
+								: error ? <EmptyState text="Encounter details could not be loaded." theme={theme} />
+										: !versionDetails.length ? <EmptyState text="No encounter-rate details are recorded for this area." theme={theme} />
+											: versionDetails.map((version) => (
+											<View key={version.version} style={[styles.locationVersion, { borderBottomColor: theme.backgroundSelected }]}>
+												<View style={styles.locationVersionHeader}>
+													<Text style={[styles.rowTitle, { color: theme.text }]}>{shortGameName(GAMES[version.version as GameId]?.displayName ?? titleCase(version.version))}</Text>
+													<Text style={[styles.rowDetail, { color: theme.textSecondary }]}>Highest individual slot: {version.maxChance}%</Text>
+												</View>
+												{(version.encounterDetails ?? []).map((detail, index) => (
+													<View key={`${detail.method}-${detail.minLevel}-${index}`} style={styles.encounterRateRow}>
+														<Text style={[styles.rowDetail, { color: theme.text }]}>
+															{titleCase(detail.method ?? 'encounter')} · Level {detail.minLevel === detail.maxLevel ? detail.minLevel : `${detail.minLevel}-${detail.maxLevel}`} · {detail.chance}%
+														</Text>
+														{detail.conditions?.length > 0 && (
+															<Text style={[styles.rowDetail, { color: theme.textSecondary }]}>{detail.conditions.map(titleCase).join(', ')}</Text>
+														)}
+													</View>
+												))}
+											</View>
+										))}
+						</ScrollView>
+					</View>
+				</View>
+			</Modal>
+		);
+	}
+
+	function MoveModal({ move, onClose, theme }: { move: MoveRecord | null; onClose: () => void; theme: ReturnType<typeof useTheme> }) {
 	const effectDescription = move?.effects?.full || move?.effects?.short || move?.description || 'No effect description is available.';
 	return (
 		<Modal visible={move !== null} transparent animationType="slide" onRequestClose={onClose}>
@@ -869,8 +974,9 @@ const styles = StyleSheet.create({
 	currentNodeLabel: { fontSize: 10, fontWeight: '700' },
 	emptyState: { fontSize: 14, lineHeight: 21, paddingVertical: Spacing.two },
 	listRow: { minHeight: 56, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: Spacing.two, borderBottomWidth: StyleSheet.hairlineWidth, paddingVertical: Spacing.two },
-	locationEntry: { gap: Spacing.one, paddingBottom: Spacing.two, borderBottomWidth: StyleSheet.hairlineWidth, borderBottomColor: '#00000020' },
-	encounterDetails: { gap: Spacing.one, paddingLeft: Spacing.two },
+	locationVersion: { gap: Spacing.two, paddingBottom: Spacing.two, borderBottomWidth: StyleSheet.hairlineWidth },
+	locationVersionHeader: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between', gap: Spacing.one },
+	encounterRateRow: { gap: Spacing.one, paddingLeft: Spacing.two },
 	listCopy: { flex: 1, gap: Spacing.one },
 	rowTitle: { fontSize: 14, fontWeight: '700', textTransform: 'capitalize' },
 	rowDetail: { fontSize: 12, lineHeight: 17 },

@@ -316,9 +316,24 @@ def get_location_version_details(encounter: dict[str, Any]) -> list[dict[str, An
 		details.append(
 			{
 				"version": version,
-				"versionGroup": version_group,
-				"maxChance": version_detail["max_chance"],
-				"encounterDetails": version_detail["encounter_details"],
+				"maxChance": max(
+					(detail["chance"] for detail in version_detail["encounter_details"]),
+					default=0,
+				),
+				"encounterDetails": [
+					{
+						"minLevel": detail["min_level"],
+						"maxLevel": detail["max_level"],
+						"chance": detail["chance"],
+						"method": get_link_name(detail.get("method")),
+						"conditions": [
+							condition["name"]
+							for condition in detail.get("condition_values", [])
+							if condition.get("name")
+						],
+					}
+					for detail in version_detail["encounter_details"]
+				],
 			}
 		)
 	return details
@@ -502,11 +517,17 @@ def download_sprite(pokemon_id: int) -> tuple[int, str | None, bool]:
 	return pokemon_id, str(last_error or "download failed"), False
 
 
-def write_json(filename: str, value: Any) -> None:
+def write_json(filename: str, value: Any, compact: bool = False) -> None:
 	destination = DATA_DIR / filename
 	temporary = destination.with_suffix(f"{destination.suffix}.tmp")
 	temporary.write_text(
-		json.dumps(value, ensure_ascii=False, indent=2, allow_nan=False) + "\n",
+		json.dumps(
+			value,
+			ensure_ascii=False,
+			indent=None if compact else 2,
+			separators=(",", ":") if compact else None,
+			allow_nan=False,
+		) + "\n",
 		encoding="utf-8",
 	)
 	temporary.replace(destination)
@@ -624,7 +645,7 @@ def main() -> int:
 			location["pokemon"].sort(key=lambda entry: entry["pokemonId"])
 		write_json("pokemon.json", pokemon_records)
 		write_json("moves.json", sorted(moves.values(), key=lambda move: move["id"]))
-		write_json("locations.json", sorted(locations.values(), key=lambda location: location["id"]))
+		write_json("locations.json", sorted(locations.values(), key=lambda location: location["id"]), compact=True)
 		print(f"JSON databases written to {DATA_DIR}")
 	else:
 		print("JSON databases were not written because some Pokémon or metadata requests failed.")

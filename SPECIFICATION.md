@@ -39,6 +39,7 @@ evolutions: Array of { id: number, name: string, details: EvolutionDetail[] }
 
 locations: Array of { locationAreaId: number, locationArea: string, versionGroups: string[] }
 locations: Array of { locationAreaId: number, locationArea: string, versions: string[] }
+assets/data/locations.json stores per-area encounterDetails by Pokémon and exact game version, including minLevel, maxLevel, method, chance, and conditions.
 Caught status is stored per game; Living Dex status is global per species.
 
 Move Record (assets/data/moves.json)

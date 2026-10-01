@@ -17,6 +17,7 @@ id: number (1–807)
 name: string
 
 nationalNo: number
+catchRate: number (base catch rate out of 255)
 
 localDexNumbers: Record (e.g. { "kanto": 25, "original-johto": 22, "kalos-central": 104 })
 
@@ -37,6 +38,8 @@ evolvesFrom: { id: number, name: string } | null
 evolutions: Array of { id: number, name: string, details: EvolutionDetail[] }
 
 locations: Array of { locationAreaId: number, locationArea: string, versionGroups: string[] }
+locations: Array of { locationAreaId: number, locationArea: string, versions: string[] }
+Caught status is stored per game; Living Dex status is global per species.
 
 Move Record (assets/data/moves.json)
 id: number

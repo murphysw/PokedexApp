@@ -56,6 +56,7 @@ export type GameMetadata = {
 	additionalRegionalDexKeys?: readonly RegionalDexKey[];
 	versionGroupEngineKey: string;
 	generation: Generation;
+	engineGeneration?: Generation;
 	pairedGameId: GameId | null;
 	exclusivePokemonIds: readonly number[];
 };
@@ -172,6 +173,7 @@ export const GAMES: Record<GameId, GameMetadata> = {
 		regionalDexKey: 'kanto',
 		versionGroupEngineKey: 'firered-leafgreen',
 		generation: 1,
+		engineGeneration: 3,
 		pairedGameId: 'leafgreen',
 		exclusivePokemonIds: VERSION_EXCLUSIVE_IDS.firered,
 	},
@@ -180,6 +182,7 @@ export const GAMES: Record<GameId, GameMetadata> = {
 		regionalDexKey: 'kanto',
 		versionGroupEngineKey: 'firered-leafgreen',
 		generation: 1,
+		engineGeneration: 3,
 		pairedGameId: 'firered',
 		exclusivePokemonIds: VERSION_EXCLUSIVE_IDS.leafgreen,
 	},
@@ -212,6 +215,7 @@ export const GAMES: Record<GameId, GameMetadata> = {
 		regionalDexKey: 'updated-johto',
 		versionGroupEngineKey: 'heartgold-soulsilver',
 		generation: 2,
+		engineGeneration: 4,
 		pairedGameId: 'soulsilver',
 		exclusivePokemonIds: VERSION_EXCLUSIVE_IDS.heartgold,
 	},
@@ -220,6 +224,7 @@ export const GAMES: Record<GameId, GameMetadata> = {
 		regionalDexKey: 'updated-johto',
 		versionGroupEngineKey: 'heartgold-soulsilver',
 		generation: 2,
+		engineGeneration: 4,
 		pairedGameId: 'heartgold',
 		exclusivePokemonIds: VERSION_EXCLUSIVE_IDS.soulsilver,
 	},
@@ -278,6 +283,7 @@ export const GAMES: Record<GameId, GameMetadata> = {
 		regionalDexKey: 'updated-hoenn',
 		versionGroupEngineKey: 'omega-ruby-alpha-sapphire',
 		generation: 3,
+		engineGeneration: 6,
 		pairedGameId: 'alpha-sapphire',
 		exclusivePokemonIds: VERSION_EXCLUSIVE_IDS['omega-ruby'],
 	},
@@ -286,6 +292,7 @@ export const GAMES: Record<GameId, GameMetadata> = {
 		regionalDexKey: 'updated-hoenn',
 		versionGroupEngineKey: 'omega-ruby-alpha-sapphire',
 		generation: 3,
+		engineGeneration: 6,
 		pairedGameId: 'omega-ruby',
 		exclusivePokemonIds: VERSION_EXCLUSIVE_IDS['alpha-sapphire'],
 	},

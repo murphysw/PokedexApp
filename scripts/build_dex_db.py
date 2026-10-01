@@ -386,7 +386,7 @@ def build_records(
 			{
 				"locationAreaId": area_id,
 				"locationArea": area["name"],
-				"versionGroups": sorted({detail["versionGroup"] for detail in version_details}),
+				"versions": sorted({detail["version"] for detail in version_details}),
 			}
 		)
 		location = locations.setdefault(
@@ -438,6 +438,7 @@ def build_records(
 		"id": pokemon_id,
 		"name": pokemon_data["name"],
 		"nationalNo": pokemon_id,
+		"catchRate": species_data.get("capture_rate"),
 		"regionalDexNumbers": get_regional_dex_numbers(species_data),
 		"localDexNumbers": get_local_dex_numbers(species_data),
 		"baseStats": base_stats,

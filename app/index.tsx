@@ -89,7 +89,7 @@ export default function PokedexListScreen() {
 
 	const statusFilteredRecords = useMemo(() => roster.filter((pokemon) => {
 		const caught = Boolean(caughtMap[`${validGameId}_${pokemon.id}`]);
-		const livingDex = Boolean(livingDexMap[`${validGameId}_${pokemon.id}`]);
+		const livingDex = Boolean(livingDexMap[String(pokemon.id)]);
 		const matchesCaught = listFilters.caught === 'all'
 			|| (listFilters.caught === 'marked' && caught)
 			|| (listFilters.caught === 'unmarked' && !caught);
@@ -104,19 +104,23 @@ export default function PokedexListScreen() {
 		if (!normalizedQuery) return statusFilteredRecords;
 		const numericQuery = normalizedQuery.replace(/^#/, '');
 		if (/^\d+$/.test(numericQuery)) {
-			const ranked = statusFilteredRecords.flatMap((pokemon) => {
-				const nationalNumber = String(pokemon.nationalNo);
-				const localNumbers = mode === 'local'
-					? regionalKeys.map((key) => pokemon.localDexNumbers[key]).filter((value) => value !== undefined).map(String)
-					: [];
-				let rank: number | undefined;
-				if (localNumbers.some((value) => value === numericQuery)) rank = 0;
-				else if (nationalNumber === numericQuery) rank = 1;
-				else if (localNumbers.some((value) => value.startsWith(numericQuery))) rank = 2;
-				else if (nationalNumber.startsWith(numericQuery)) rank = 3;
-				return rank === undefined ? [] : [{ pokemon, rank }];
-			});
-		return ranked.sort((first, second) => first.rank - second.rank).map(({ pokemon }) => pokemon);
+			if (mode === 'local') {
+				const localNumber = (pokemon: PokemonRecord) => regionalKeys
+					.map((key) => pokemon.localDexNumbers[key])
+					.find((value) => value !== undefined);
+				const exactLocal = statusFilteredRecords.filter((pokemon) => String(localNumber(pokemon)) === numericQuery);
+				if (exactLocal.length) return exactLocal;
+				const exactNational = statusFilteredRecords.filter((pokemon) => String(pokemon.nationalNo) === numericQuery);
+				if (exactNational.length) return exactNational;
+				return statusFilteredRecords.filter((pokemon) => {
+					const number = localNumber(pokemon);
+					return number !== undefined && String(number).startsWith(numericQuery);
+				});
+			}
+			const exactNational = statusFilteredRecords.filter((pokemon) => String(pokemon.nationalNo) === numericQuery);
+			return exactNational.length
+				? exactNational
+				: statusFilteredRecords.filter((pokemon) => String(pokemon.nationalNo).startsWith(numericQuery));
 		}
 		return statusFilteredRecords
 			.filter((pokemon) => pokemon.name.includes(normalizedQuery))
@@ -128,7 +132,7 @@ export default function PokedexListScreen() {
 
 	const statusKey = (pokemonId: number) => `${validGameId}_${pokemonId}`;
 	const caughtCount = roster.filter((pokemon) => caughtMap[statusKey(pokemon.id)]).length;
-	const livingDexCount = roster.filter((pokemon) => livingDexMap[statusKey(pokemon.id)]).length;
+	const livingDexCount = roster.filter((pokemon) => livingDexMap[String(pokemon.id)]).length;
 	const allVisibleSelected = visibleRecords.length > 0
 		&& visibleRecords.every((pokemon) => selectedIds.has(pokemon.id));
 	const activeFilterCount = Number(listFilters.caught !== 'all') + Number(listFilters.livingDex !== 'all');
@@ -189,7 +193,7 @@ export default function PokedexListScreen() {
 	const renderPokemon = ({ item }: { item: PokemonRecord }) => {
 		const key = statusKey(item.id);
 		const isCaught = Boolean(caughtMap[key]);
-		const isLivingDex = Boolean(livingDexMap[key]);
+		const isLivingDex = Boolean(livingDexMap[String(item.id)]);
 		const localDexKey = regionalKeys.find((dexKey) => item.localDexNumbers[dexKey] !== undefined);
 		const localDexNumber = localDexKey ? item.localDexNumbers[localDexKey] : item.nationalNo;
 		const isExclusive = mode === 'local' && game.exclusivePokemonIds.includes(item.id);

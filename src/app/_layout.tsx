@@ -21,7 +21,7 @@ export default function RootLayout() {
             contentStyle: { backgroundColor: theme.colors.background },
           }}>
           <Stack.Screen name="(tabs)" options={{ title: 'Pokédex' }} />
-          <Stack.Screen name="pokemon/[id]" options={{ title: 'Pokémon' }} />
+          <Stack.Screen name="pokemon/[id]" options={{ headerTitle: '' }} />
         </Stack>
       </ThemeProvider>
     </AppProvider>

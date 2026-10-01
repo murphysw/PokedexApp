@@ -6,7 +6,7 @@ import { router, useLocalSearchParams, type Href } from 'expo-router';
 
 import moveData from '../../assets/data/moves.json';
 import pokemonData from '../../assets/data/pokemon.json';
-import { GAMES, GAME_IDS } from '../../constants/games';
+import { GAMES, GAME_IDS, getRegionalDexKeys, type GameId, type RegionalDexKey } from '../../constants/games';
 import { useAppContext } from '../../context/AppContext';
 import { TypeMatchupCard, type PokemonType, type TypeSelection } from '../tools/type-matchup';
 import { MaxContentWidth, Spacing } from '../../src/constants/theme';
@@ -41,6 +41,8 @@ type PokemonRecord = {
 	id: number;
 	name: string;
 	nationalNo: number;
+	generation: string;
+	catchRate?: number;
 	localDexNumbers: Record<string, number>;
 	types: string[];
 	abilities: { name: string; isHidden: boolean; description: string }[];
@@ -56,7 +58,7 @@ type PokemonRecord = {
 	locations: {
 		locationAreaId: number;
 		locationArea: string;
-		versionGroups: string[];
+		versions: string[];
 	}[];
 };
 
@@ -86,7 +88,7 @@ type LearnableMove = {
 	detail: MoveRecord['learnedBy'][number]['versionGroupDetails'][number];
 };
 
-type MoveFilter = 'all' | 'level-up' | 'tm' | 'tutor';
+type MoveFilter = 'all' | 'level-up' | 'tm' | 'tutor' | 'egg' | 'other';
 
 const POKEMON_RECORDS = pokemonData as unknown as PokemonRecord[];
 const POKEMON_BY_ID = new Map(POKEMON_RECORDS.map((entry) => [entry.id, entry]));
@@ -114,6 +116,32 @@ const DEX_GENERATIONS: Record<string, number> = {
 	'updated-alola': 7,
 	'letsgo-kanto': 7,
 };
+const DEX_CONTEXT_GAMES: Record<string, GameId> = {
+	kanto: 'red',
+	'original-johto': 'gold',
+	'updated-johto': 'soulsilver',
+	hoenn: 'ruby',
+	'updated-hoenn': 'omega-ruby',
+	'original-sinnoh': 'diamond',
+	'extended-sinnoh': 'platinum',
+	'original-unova': 'black',
+	'updated-unova': 'black-2',
+	'kalos-central': 'x',
+	'kalos-coastal': 'x',
+	'kalos-mountain': 'x',
+	'original-alola': 'sun',
+	'updated-alola': 'ultra-sun',
+	'letsgo-kanto': 'lets-go-pikachu',
+};
+const SPECIES_GENERATIONS: Record<string, number> = {
+	'generation-i': 1,
+	'generation-ii': 2,
+	'generation-iii': 3,
+	'generation-iv': 4,
+	'generation-v': 5,
+	'generation-vi': 6,
+	'generation-vii': 7,
+};
 const STAT_ROWS: { key: StatKey; label: string; color: string }[] = [
 	{ key: 'hp', label: 'HP', color: '#BE5543' },
 	{ key: 'atk', label: 'Attack', color: '#C48337' },
@@ -136,6 +164,22 @@ function titleCase(value: string) {
 		.split('-')
 		.map((part) => part.charAt(0).toUpperCase() + part.slice(1))
 		.join(' ');
+}
+
+function toRomanNumeral(value: number) {
+	const numerals: [number, string][] = [
+		[1000, 'M'], [900, 'CM'], [500, 'D'], [400, 'CD'], [100, 'C'], [90, 'XC'],
+		[50, 'L'], [40, 'XL'], [10, 'X'], [9, 'IX'], [5, 'V'], [4, 'IV'], [1, 'I'],
+	];
+	let remainder = value;
+	let result = '';
+	for (const [amount, symbol] of numerals) {
+		while (remainder >= amount) {
+			result += symbol;
+			remainder -= amount;
+		}
+	}
+	return result || String(value);
 }
 
 type EvolutionStep = { pokemon: PokemonRecord; details: EvolutionDetail[]; parentName: string };
@@ -260,28 +304,13 @@ export default function PokemonDetailScreen() {
 	const [selectedMegaId, setSelectedMegaId] = useState<number | null>(null);
 	const [selectedMove, setSelectedMove] = useState<LearnableMove | null>(null);
 	const [matchupVisible, setMatchupVisible] = useState(false);
+	const [matchupMode, setMatchupMode] = useState<'defense' | 'offense'>('defense');
 	const [selectedGeneration, setSelectedGeneration] = useState<{ pokemonId: number; gameId: string; listMode: string; generation: number } | null>(null);
 	const [moveFilter, setMoveFilter] = useState<MoveFilter>('all');
 	const selectedMega = pokemon?.megaForms.find((form) => form.id === selectedMegaId);
 	const displayedStats = pokemon
 		? { ...pokemon.baseStats, ...(selectedMega?.statOverrides ?? {}) }
 		: undefined;
-	const learnableMoves: LearnableMove[] = pokemon
-		? MOVE_RECORDS.flatMap((move) => {
-			const learnedByPokemon = move.learnedBy.find((entry) => entry.pokemonId === pokemon.id);
-			return (learnedByPokemon?.versionGroupDetails ?? [])
-				.filter((detail) => detail.version_group === game.versionGroupEngineKey)
-				.map((detail) => ({ move, detail }));
-		}).sort((first, second) => {
-			const methodOrder = (method: string) => method === 'level-up' ? 0 : method === 'tm' ? 1 : method === 'tutor' ? 2 : 3;
-			return methodOrder(first.detail.learn_method) - methodOrder(second.detail.learn_method)
-				|| first.detail.level_learned_at - second.detail.level_learned_at
-				|| first.move.name.localeCompare(second.move.name);
-		})
-		: [];
-	const gameLocations = pokemon?.locations.filter((location) =>
-		location.versionGroups.includes(game.versionGroupEngineKey),
-	) ?? [];
 	const dexEntries = pokemon
 		? Object.entries(pokemon.localDexNumbers)
 			.filter(([key]) => DEX_GENERATIONS[key] !== undefined)
@@ -304,7 +333,42 @@ export default function PokemonDetailScreen() {
 		?? dexEntries.find((entry) => entry.generation === activeGeneration)
 		?? dexEntries[0];
 	const availableGenerations = [...new Set(dexEntries.map((entry) => entry.generation))];
-	const evolutionLine = pokemon ? getEvolutionLine(pokemon) : undefined;
+	const selectedRegionKey = selectedDexEntry?.key as RegionalDexKey | undefined;
+	const activeGameDexKeys = getRegionalDexKeys(game);
+	const detailGameId = selectedRegionKey && activeGameDexKeys.includes(selectedRegionKey)
+		? validGameId
+		: DEX_CONTEXT_GAMES[selectedRegionKey ?? ''] ?? validGameId;
+	const detailGame = GAMES[detailGameId];
+	const engineGeneration = detailGame.engineGeneration ?? detailGame.generation;
+	const visibleSections = SECTIONS.filter(({ key }) =>
+		(key !== 'forms' || Boolean(pokemon?.megaForms.length && engineGeneration >= 6))
+		&& (key !== 'abilities' || engineGeneration >= 3),
+	);
+	const currentSection = visibleSections.some((item) => item.key === section) ? section : 'stats';
+	const availableAbilities = pokemon?.abilities.filter((ability) => engineGeneration >= 5 || !ability.isHidden) ?? [];
+	const learnableMoves: LearnableMove[] = pokemon
+		? MOVE_RECORDS.flatMap((move) => {
+			const learnedByPokemon = move.learnedBy.find((entry) => entry.pokemonId === pokemon.id);
+			return (learnedByPokemon?.versionGroupDetails ?? [])
+				.filter((detail) => detail.version_group === detailGame.versionGroupEngineKey)
+				.map((detail) => ({ move, detail }));
+		}).sort((first, second) => {
+			const methodOrder = (method: string) => method === 'level-up' ? 0 : method === 'tm' ? 1 : method === 'tutor' ? 2 : method.includes('egg') ? 3 : 4;
+			return methodOrder(first.detail.learn_method) - methodOrder(second.detail.learn_method)
+				|| first.detail.level_learned_at - second.detail.level_learned_at
+				|| first.move.name.localeCompare(second.move.name);
+		})
+		: [];
+	const gameLocations = pokemon?.locations.filter((location) => location.versions.includes(detailGameId)) ?? [];
+	const rawEvolutionLine = pokemon ? getEvolutionLine(pokemon) : undefined;
+	const evolutionSteps = rawEvolutionLine?.steps
+		.filter((step) => (SPECIES_GENERATIONS[step.pokemon.generation] ?? 1) <= (selectedDexEntry?.generation ?? 7))
+		.filter((step) => !step.details.length || step.details.some((detail) => !detail.version_group || detail.version_group === detailGame.versionGroupEngineKey))
+		.map((step) => ({
+			...step,
+			details: step.details.filter((detail) => !detail.version_group || detail.version_group === detailGame.versionGroupEngineKey),
+		})) ?? [];
+	const evolutionLine = rawEvolutionLine ? { ...rawEvolutionLine, steps: evolutionSteps } : undefined;
 	const activeListRegion = listMode === 'local' && regionKeyParam && DEX_GENERATIONS[regionKeyParam]
 		? regionKeyParam
 		: game.regionalDexKey;
@@ -315,14 +379,36 @@ export default function PokemonDetailScreen() {
 	const navigationIndex = pokemon ? navigationRoster.findIndex((entry) => entry.id === pokemon.id) : -1;
 	const previousPokemon = navigationIndex > 0 ? navigationRoster[navigationIndex - 1] : undefined;
 	const nextPokemon = navigationIndex >= 0 ? navigationRoster[navigationIndex + 1] : undefined;
-	const visibleMoves = moveFilter === 'all'
-		? learnableMoves
-		: learnableMoves.filter(({ detail }) => detail.learn_method === moveFilter);
+	const filterForMethod = (method: string): Exclude<MoveFilter, 'all'> => {
+		if (method === 'level-up' || method === 'tm' || method === 'tutor') return method;
+		return method.includes('egg') ? 'egg' : 'other';
+	};
+	const moveFilterOptions: { value: MoveFilter; label: string }[] = [
+		{ value: 'all', label: 'All' },
+		{ value: 'level-up', label: 'Level-up' },
+		{ value: 'tm', label: 'TM' },
+		{ value: 'tutor', label: 'Tutor' },
+		{ value: 'egg', label: 'Egg' },
+		{ value: 'other', label: 'Other' },
+	];
+	const moveFilters = moveFilterOptions.filter((filter) =>
+		filter.value === 'all' || learnableMoves.some(({ detail }) => filterForMethod(detail.learn_method) === filter.value),
+	);
+	const currentMoveFilter = moveFilters.some((filter) => filter.value === moveFilter) ? moveFilter : 'all';
+	const visibleMoves = learnableMoves.filter(({ detail }) =>
+		currentMoveFilter === 'all' || filterForMethod(detail.learn_method) === currentMoveFilter,
+	);
 	const typeSelection: TypeSelection | undefined = pokemon?.types.length
 		? pokemon.types.length > 1
 			? [pokemon.types[0] as PokemonType, pokemon.types[1] as PokemonType]
 			: [pokemon.types[0] as PokemonType]
 		: undefined;
+	const pairedDetailGame = detailGame.pairedGameId ? GAMES[detailGame.pairedGameId] : undefined;
+	const exclusiveGame = pokemon && detailGame.exclusivePokemonIds.includes(pokemon.id)
+		? detailGame
+		: pokemon && pairedDetailGame?.exclusivePokemonIds.includes(pokemon.id)
+			? pairedDetailGame
+			: undefined;
 
 	const navigateToPokemon = (targetId: number) => router.push({
 		pathname: '/pokemon/[id]',
@@ -352,7 +438,7 @@ export default function PokemonDetailScreen() {
 							: <Text style={[styles.heroSpriteFallback, { color: theme.textSecondary }]}>{pokemon.nationalNo}</Text>}
 					</View>
 					<View style={styles.header}>
-						<Text style={[styles.eyebrow, { color: theme.textSecondary }]}>{game.displayName} · National #{String(pokemon.nationalNo).padStart(3, '0')}</Text>
+						<Text style={[styles.eyebrow, { color: theme.textSecondary }]}>{detailGame.displayName} · National #{String(pokemon.nationalNo).padStart(3, '0')}</Text>
 						<Text style={[styles.title, { color: theme.text }]}>{titleCase(pokemon.name)}</Text>
 						{selectedDexEntry && (
 							<Text style={[styles.regionNumber, { color: theme.textSecondary }]}>
@@ -371,6 +457,9 @@ export default function PokemonDetailScreen() {
 								</Pressable>
 							))}
 						</View>
+						{exclusiveGame && (
+							<Text style={[styles.exclusiveLabel, { color: theme.textSecondary }]}>Version-exclusive in {exclusiveGame.displayName}</Text>
+						)}
 					</View>
 				</View>
 				{availableGenerations.length > 1 && (
@@ -383,10 +472,11 @@ export default function PokemonDetailScreen() {
 									<Pressable
 										key={generation}
 										accessibilityRole="radio"
+										accessibilityLabel={`Generation ${toRomanNumeral(generation)}`}
 										accessibilityState={{ checked: selected }}
 										onPress={() => setSelectedGeneration({ pokemonId: pokemon.id, gameId: validGameId, listMode, generation })}
 										style={[styles.regionOption, { backgroundColor: selected ? theme.text : theme.backgroundElement }]}>
-										<Text style={[styles.regionOptionText, { color: selected ? theme.background : theme.text }]}>{generation}</Text>
+										<Text style={[styles.regionOptionText, { color: selected ? theme.background : theme.text }]}>{toRomanNumeral(generation)}</Text>
 									</Pressable>
 								);
 							})}
@@ -394,31 +484,31 @@ export default function PokemonDetailScreen() {
 					</View>
 				)}
 
-				<ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.sectionTabs}>
-					{SECTIONS.map((item) => (
+				<View style={styles.sectionTabs}>
+					{visibleSections.map((item) => (
 						<Pressable
 							key={item.key}
 							accessibilityRole="tab"
-							accessibilityState={{ selected: section === item.key }}
+							accessibilityState={{ selected: currentSection === item.key }}
 							onPress={() => setSection(item.key)}
 							style={({ pressed }) => [
 								styles.sectionTab,
-								{ backgroundColor: section === item.key ? theme.text : theme.backgroundElement, opacity: pressed ? 0.75 : 1 },
+								{ backgroundColor: currentSection === item.key ? theme.text : theme.backgroundElement, opacity: pressed ? 0.75 : 1 },
 							]}>
-							<Text style={[styles.sectionTabText, { color: section === item.key ? theme.background : theme.text }]}>{item.label}</Text>
+							<Text style={[styles.sectionTabText, { color: currentSection === item.key ? theme.background : theme.text }]}>{item.label}</Text>
 						</Pressable>
 					))}
-				</ScrollView>
+				</View>
 
 				<View style={[styles.sectionPanel, { backgroundColor: theme.backgroundElement, borderColor: theme.backgroundSelected }]}>
-					{section === 'stats' && (
+					{currentSection === 'stats' && (
 						<View style={styles.sectionContent}>
 							<SectionHeading title="Base stats" detail="National Dex record" theme={theme} />
 							<StatBars stats={pokemon.baseStats} baseStats={pokemon.baseStats} theme={theme} />
 						</View>
 					)}
 
-					{section === 'forms' && (
+					{currentSection === 'forms' && (
 						<View style={styles.sectionContent}>
 							<SectionHeading title="Mega forms" detail="Compare each form with the base stats" theme={theme} />
 							<View style={styles.formChoices}>
@@ -441,10 +531,10 @@ export default function PokemonDetailScreen() {
 						</View>
 					)}
 
-					{section === 'abilities' && (
+					{currentSection === 'abilities' && (
 						<View style={styles.sectionContent}>
 							<SectionHeading title="Abilities" detail="Standard and hidden abilities" theme={theme} />
-							{pokemon.abilities.length ? pokemon.abilities.map((ability) => (
+							{availableAbilities.length ? availableAbilities.map((ability) => (
 								<View key={`${ability.name}-${ability.isHidden}`} style={[styles.abilityRow, { borderBottomColor: theme.backgroundSelected }]}>
 									<View style={styles.abilityHeader}>
 										<Text style={[styles.rowTitle, { color: theme.text }]}>{titleCase(ability.name)}</Text>
@@ -456,10 +546,10 @@ export default function PokemonDetailScreen() {
 						</View>
 					)}
 
-					{section === 'evolution' && (
+					{currentSection === 'evolution' && (
 						<View style={styles.sectionContent}>
 							<SectionHeading title="Evolution line" detail="Select a Pokémon to open its details; conditions appear between stages." theme={theme} />
-							{evolutionLine && (pokemon.evolvesFrom || pokemon.evolutions.length) ? (
+							{evolutionLine && (evolutionLine.root.id !== pokemon.id || evolutionLine.steps.length) ? (
 								<View style={styles.evolutionFlow}>
 									<EvolutionLinkCard pokemon={evolutionLine.root} current={evolutionLine.root.id === pokemon.id} onPress={() => navigateToPokemon(evolutionLine.root.id)} theme={theme} />
 									{evolutionLine.steps.map((step, index) => (
@@ -477,32 +567,32 @@ export default function PokemonDetailScreen() {
 						</View>
 					)}
 
-					{section === 'locations' && (
+					{currentSection === 'locations' && (
 						<View style={styles.sectionContent}>
-							<SectionHeading title="Location areas" detail={`Filtered for ${game.displayName}`} theme={theme} />
+							<SectionHeading title="Location areas" detail={`Filtered for ${detailGame.displayName}`} theme={theme} />
+							{pokemon.catchRate !== undefined && (
+								<Text style={[styles.rowDetail, { color: theme.textSecondary }]}>Base catch rate: {pokemon.catchRate} / 255</Text>
+							)}
 							{gameLocations.length ? gameLocations.map((location) => (
-								<View key={location.locationAreaId} style={[styles.listRow, { borderBottomColor: theme.backgroundSelected }]}>
-									<View style={styles.listCopy}>
-										<Text style={[styles.rowTitle, { color: theme.text }]}>{titleCase(location.locationArea)}</Text>
-										<Text style={[styles.rowDetail, { color: theme.textSecondary }]}>{game.versionGroupEngineKey}</Text>
+								<View key={location.locationAreaId} style={styles.locationEntry}>
+									<View style={[styles.listRow, { borderBottomColor: theme.backgroundSelected }]}>
+										<View style={styles.listCopy}>
+											<Text style={[styles.rowTitle, { color: theme.text }]}>{titleCase(location.locationArea)}</Text>
+											<Text style={[styles.rowDetail, { color: theme.textSecondary }]}>{location.versions.map((version) => GAMES[version as GameId]?.displayName ?? titleCase(version)).join(', ')}</Text>
+										</View>
+										<Text style={[styles.rowId, { color: theme.textSecondary }]}>#{location.locationAreaId}</Text>
 									</View>
-									<Text style={[styles.rowId, { color: theme.textSecondary }]}>#{location.locationAreaId}</Text>
 								</View>
 							)) : <EmptyState text={`No encounter areas are recorded for ${game.displayName}.`} theme={theme} />}
 						</View>
 					)}
 
-					{section === 'moves' && (
+					{currentSection === 'moves' && (
 						<View style={styles.sectionContent}>
-							<SectionHeading title="Learnable moves" detail={`${game.displayName} engine · ${game.versionGroupEngineKey}`} theme={theme} />
+							<SectionHeading title="Learnable moves" detail={`${detailGame.displayName} engine · ${detailGame.versionGroupEngineKey}`} theme={theme} />
 							<View style={styles.methodFilter} accessibilityRole="radiogroup" accessibilityLabel="Move learn method">
-								{([
-									{ value: 'all', label: 'All' },
-									{ value: 'level-up', label: 'Level-up' },
-									{ value: 'tm', label: 'TM' },
-									{ value: 'tutor', label: 'Tutor' },
-								] as const).map((option) => {
-									const selected = moveFilter === option.value;
+								{moveFilters.map((option) => {
+										const selected = currentMoveFilter === option.value;
 									return (
 										<Pressable
 											key={option.value}
@@ -531,12 +621,13 @@ export default function PokemonDetailScreen() {
 									</View>
 									<Text style={[styles.rowChevron, { color: theme.textSecondary }]}>›</Text>
 								</Pressable>
-							)) : <EmptyState text={`No ${moveFilter === 'all' ? '' : `${titleCase(moveFilter)} `}moves are listed for ${game.displayName}.`} theme={theme} />}
+							)) : <EmptyState text={`No ${currentMoveFilter === 'all' ? '' : `${titleCase(currentMoveFilter)} `}moves are listed for ${detailGame.displayName}.`} theme={theme} />}
 						</View>
 					)}
 				</View>
 
-				<View style={[styles.dexNavigation, { borderTopColor: theme.backgroundSelected }]}>
+			</ScrollView>
+			<View style={[styles.dexNavigation, { borderTopColor: theme.backgroundSelected, backgroundColor: theme.background }]}>
 					<Pressable
 						disabled={!previousPokemon}
 						accessibilityRole="button"
@@ -558,10 +649,9 @@ export default function PokemonDetailScreen() {
 						<Text style={[styles.dexNavLabel, { color: theme.textSecondary }]}>NEXT</Text>
 						<Text style={[styles.dexNavName, { color: theme.text }]} numberOfLines={1}>{nextPokemon ? titleCase(nextPokemon.name) : '—'}</Text>
 					</Pressable>
-				</View>
-			</ScrollView>
+			</View>
 
-			<TypeMatchupModal visible={matchupVisible} types={typeSelection} onClose={() => setMatchupVisible(false)} theme={theme} />
+			<TypeMatchupModal visible={matchupVisible} types={typeSelection} mode={matchupMode} onModeChange={setMatchupMode} onClose={() => setMatchupVisible(false)} theme={theme} />
 			<MoveModal move={selectedMove?.move ?? null} onClose={() => setSelectedMove(null)} theme={theme} />
 		</SafeAreaView>
 	);
@@ -619,11 +709,15 @@ function EmptyState({ text, theme }: { text: string; theme: ReturnType<typeof us
 function TypeMatchupModal({
 	visible,
 	types,
+	mode,
+	onModeChange,
 	onClose,
 	theme,
 }: {
 	visible: boolean;
 	types?: TypeSelection;
+	mode: 'defense' | 'offense';
+	onModeChange: (mode: 'defense' | 'offense') => void;
 	onClose: () => void;
 	theme: ReturnType<typeof useTheme>;
 }) {
@@ -634,14 +728,29 @@ function TypeMatchupModal({
 				<View style={[styles.typeModalSheet, { backgroundColor: theme.background, borderColor: theme.backgroundSelected }]}>
 					<View style={styles.modalHeader}>
 						<View style={styles.listCopy}>
-							<Text style={[styles.eyebrow, { color: theme.textSecondary }]}>DEFENSIVE PROFILE</Text>
+							<Text style={[styles.eyebrow, { color: theme.textSecondary }]}>{mode === 'defense' ? 'DEFENSIVE PROFILE' : 'OFFENSIVE PROFILE'}</Text>
 							<Text style={[styles.modalTitle, { color: theme.text }]}>Type matchup</Text>
 						</View>
 						<Pressable onPress={onClose} accessibilityRole="button" accessibilityLabel="Close type matchup" style={[styles.closeButton, { backgroundColor: theme.backgroundElement }]}>
 							<Text style={[styles.closeText, { color: theme.text }]}>Close</Text>
 						</Pressable>
 					</View>
-					{types && <TypeMatchupCard types={types} mode="defense" title="Damage taken" />}
+					<View style={styles.methodFilter} accessibilityRole="radiogroup" accessibilityLabel="Matchup direction">
+						{([
+							{ value: 'defense', label: 'Damage taken' },
+							{ value: 'offense', label: 'Damage dealt' },
+					] as const).map((option) => (
+						<Pressable
+							key={option.value}
+							accessibilityRole="radio"
+							accessibilityState={{ checked: mode === option.value }}
+							onPress={() => onModeChange(option.value)}
+							style={[styles.methodFilterButton, { backgroundColor: mode === option.value ? theme.text : theme.backgroundElement, borderColor: mode === option.value ? theme.text : theme.backgroundSelected }]}>
+							<Text style={[styles.methodFilterText, { color: mode === option.value ? theme.background : theme.text }]}>{option.label}</Text>
+						</Pressable>
+						))}
+					</View>
+					{types && <TypeMatchupCard types={types} mode={mode} title={mode === 'defense' ? 'Damage taken' : 'Damage dealt'} />}
 				</View>
 			</View>
 		</Modal>
@@ -703,7 +812,7 @@ const styles = StyleSheet.create({
 		alignSelf: 'center',
 		paddingHorizontal: Spacing.three,
 		paddingTop: Spacing.three,
-		paddingBottom: Spacing.six,
+		paddingBottom: Spacing.two,
 		gap: Spacing.three,
 	},
 	hero: { flexDirection: 'row', alignItems: 'center', gap: Spacing.three },
@@ -718,12 +827,13 @@ const styles = StyleSheet.create({
 	typePill: { paddingHorizontal: Spacing.two, paddingVertical: Spacing.one, borderRadius: 4 },
 	typePillText: { fontSize: 12, fontWeight: '700' },
 	regionNumber: { fontSize: 12, fontWeight: '600' },
+	exclusiveLabel: { fontSize: 11, fontWeight: '700' },
 	regionSelector: { flexDirection: 'row', alignItems: 'center', gap: Spacing.two },
 	regionSelectorLabel: { fontSize: 10, fontWeight: '700' },
 	regionOptions: { flexDirection: 'row', gap: Spacing.one },
 	regionOption: { minWidth: 32, minHeight: 32, alignItems: 'center', justifyContent: 'center', paddingHorizontal: Spacing.two, borderRadius: 4 },
 	regionOptionText: { fontSize: 12, fontWeight: '700' },
-	sectionTabs: { gap: Spacing.two, paddingVertical: Spacing.one },
+	sectionTabs: { flexDirection: 'row', flexWrap: 'wrap', gap: Spacing.two, paddingVertical: Spacing.one },
 	sectionTab: { minHeight: 38, justifyContent: 'center', paddingHorizontal: Spacing.three, borderRadius: 5 },
 	sectionTabText: { fontSize: 13, fontWeight: '700' },
 	sectionPanel: { borderWidth: 1, borderRadius: 7, padding: Spacing.three },
@@ -759,6 +869,8 @@ const styles = StyleSheet.create({
 	currentNodeLabel: { fontSize: 10, fontWeight: '700' },
 	emptyState: { fontSize: 14, lineHeight: 21, paddingVertical: Spacing.two },
 	listRow: { minHeight: 56, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: Spacing.two, borderBottomWidth: StyleSheet.hairlineWidth, paddingVertical: Spacing.two },
+	locationEntry: { gap: Spacing.one, paddingBottom: Spacing.two, borderBottomWidth: StyleSheet.hairlineWidth, borderBottomColor: '#00000020' },
+	encounterDetails: { gap: Spacing.one, paddingLeft: Spacing.two },
 	listCopy: { flex: 1, gap: Spacing.one },
 	rowTitle: { fontSize: 14, fontWeight: '700', textTransform: 'capitalize' },
 	rowDetail: { fontSize: 12, lineHeight: 17 },
@@ -766,7 +878,7 @@ const styles = StyleSheet.create({
 	methodFilter: { flexDirection: 'row', flexWrap: 'wrap', gap: Spacing.one },
 	methodFilterButton: { minHeight: 32, alignItems: 'center', justifyContent: 'center', paddingHorizontal: Spacing.two, borderWidth: 1, borderRadius: 4 },
 	methodFilterText: { fontSize: 11, fontWeight: '700' },
-	dexNavigation: { flexDirection: 'row', alignItems: 'center', gap: Spacing.two, borderTopWidth: StyleSheet.hairlineWidth, paddingTop: Spacing.three },
+	dexNavigation: { width: '100%', maxWidth: MaxContentWidth, alignSelf: 'center', flexDirection: 'row', alignItems: 'center', gap: Spacing.two, borderTopWidth: StyleSheet.hairlineWidth, paddingHorizontal: Spacing.three, paddingVertical: Spacing.two },
 	dexNavButton: { flex: 1, minWidth: 0, minHeight: 48, justifyContent: 'center', gap: Spacing.one },
 	dexNavEnd: { alignItems: 'flex-end' },
 	dexNavLabel: { fontSize: 9, fontWeight: '700' },

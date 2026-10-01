@@ -3,6 +3,16 @@ import { createContext, useCallback, useContext, useEffect, useRef, useState, ty
 
 type StatusMap = Record<string, boolean>;
 type StatusType = 'caught' | 'livingDex';
+
+function migrateLivingDexMap(statusMap: StatusMap): StatusMap {
+	const globalMap: StatusMap = {};
+	for (const [key, marked] of Object.entries(statusMap)) {
+		const suffix = key.slice(key.lastIndexOf('_') + 1);
+		const globalKey = /^\d+$/.test(suffix) ? suffix : key;
+		globalMap[globalKey] = Boolean(globalMap[globalKey] || marked);
+	}
+	return globalMap;
+}
 export type StatusFilter = 'all' | 'marked' | 'unmarked';
 export type ListFilterSettings = { caught: StatusFilter; livingDex: StatusFilter };
 
@@ -84,7 +94,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
 				if (!mountedRef.current) return;
 				const nextGame = storedGame || 'soulsilver';
 				const nextCaught = parseStatusMap(storedCaught);
-				const nextLivingDex = parseStatusMap(storedLivingDex);
+				const nextLivingDex = migrateLivingDexMap(parseStatusMap(storedLivingDex));
 				const nextFilters = parseListFilters(storedFilters);
 				activeGameRef.current = nextGame;
 				caughtMapRef.current = nextCaught;
@@ -142,7 +152,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
 		const nextMap = { ...mapRef.current };
 
 		for (const pokemonId of pokemonIds) {
-			const key = `${gameId}_${pokemonId}`;
+			const key = statusType === 'caught' ? `${gameId}_${pokemonId}` : String(pokemonId);
 			nextMap[key] = toggle ? !nextMap[key] : value;
 		}
 

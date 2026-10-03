@@ -1,0 +1,461 @@
+[
+  {
+    "moveId": 28,
+    "moveName": "sand-attack",
+    "versionGroupDetails": [
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      }
+    ]
+  },
+  {
+    "moveId": 57,
+    "moveName": "surf",
+    "versionGroupDetails": [
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 92,
+    "moveName": "toxic",
+    "versionGroupDetails": [
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 104,
+    "moveName": "double-team",
+    "versionGroupDetails": [
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 106,
+    "moveName": "harden",
+    "versionGroupDetails": [
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "egg"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "egg"
+      }
+    ]
+  },
+  {
+    "moveId": 127,
+    "moveName": "waterfall",
+    "versionGroupDetails": [
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 141,
+    "moveName": "leech-life",
+    "versionGroupDetails": [
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 156,
+    "moveName": "rest",
+    "versionGroupDetails": [
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 164,
+    "moveName": "substitute",
+    "versionGroupDetails": [
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 173,
+    "moveName": "snore",
+    "versionGroupDetails": [
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      }
+    ]
+  },
+  {
+    "moveId": 182,
+    "moveName": "protect",
+    "versionGroupDetails": [
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 191,
+    "moveName": "spikes",
+    "versionGroupDetails": [
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "egg"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "egg"
+      }
+    ]
+  },
+  {
+    "moveId": 207,
+    "moveName": "swagger",
+    "versionGroupDetails": [
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 213,
+    "moveName": "attract",
+    "versionGroupDetails": [
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 214,
+    "moveName": "sleep-talk",
+    "versionGroupDetails": [
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 216,
+    "moveName": "return",
+    "versionGroupDetails": [
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 218,
+    "moveName": "frustration",
+    "versionGroupDetails": [
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 232,
+    "moveName": "metal-claw",
+    "versionGroupDetails": [
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "egg"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "egg"
+      }
+    ]
+  },
+  {
+    "moveId": 237,
+    "moveName": "hidden-power",
+    "versionGroupDetails": [
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 240,
+    "moveName": "rain-dance",
+    "versionGroupDetails": [
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 258,
+    "moveName": "hail",
+    "versionGroupDetails": [
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 263,
+    "moveName": "facade",
+    "versionGroupDetails": [
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 269,
+    "moveName": "taunt",
+    "versionGroupDetails": [
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 453,
+    "moveName": "aqua-jet",
+    "versionGroupDetails": [
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "egg"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "egg"
+      }
+    ]
+  },
+  {
+    "moveId": 469,
+    "moveName": "wide-guard",
+    "versionGroupDetails": [
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "egg"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "egg"
+      }
+    ]
+  },
+  {
+    "moveId": 496,
+    "moveName": "round",
+    "versionGroupDetails": [
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 503,
+    "moveName": "scald",
+    "versionGroupDetails": [
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 522,
+    "moveName": "struggle-bug",
+    "versionGroupDetails": [
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      }
+    ]
+  },
+  {
+    "moveId": 590,
+    "moveName": "confide",
+    "versionGroupDetails": [
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  }
+]

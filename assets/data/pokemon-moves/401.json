@@ -1,0 +1,336 @@
+[
+  {
+    "moveId": 45,
+    "moveName": "growl",
+    "versionGroupDetails": [
+      {
+        "version_group": "diamond-pearl",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "platinum",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "black-white",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "black-2-white-2",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "x-y",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      }
+    ]
+  },
+  {
+    "moveId": 81,
+    "moveName": "string-shot",
+    "versionGroupDetails": [
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      }
+    ]
+  },
+  {
+    "moveId": 117,
+    "moveName": "bide",
+    "versionGroupDetails": [
+      {
+        "version_group": "diamond-pearl",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "platinum",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "black-white",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "black-2-white-2",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "x-y",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      }
+    ]
+  },
+  {
+    "moveId": 173,
+    "moveName": "snore",
+    "versionGroupDetails": [
+      {
+        "version_group": "platinum",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "black-2-white-2",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      }
+    ]
+  },
+  {
+    "moveId": 189,
+    "moveName": "mud-slap",
+    "versionGroupDetails": [
+      {
+        "version_group": "platinum",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      }
+    ]
+  },
+  {
+    "moveId": 253,
+    "moveName": "uproar",
+    "versionGroupDetails": [
+      {
+        "version_group": "platinum",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "black-2-white-2",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      }
+    ]
+  },
+  {
+    "moveId": 283,
+    "moveName": "endeavor",
+    "versionGroupDetails": [
+      {
+        "version_group": "platinum",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "black-2-white-2",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      }
+    ]
+  },
+  {
+    "moveId": 450,
+    "moveName": "bug-bite",
+    "versionGroupDetails": [
+      {
+        "version_group": "platinum",
+        "level_learned_at": 16,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 16,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "black-white",
+        "level_learned_at": 16,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "black-2-white-2",
+        "level_learned_at": 16,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "black-2-white-2",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "x-y",
+        "level_learned_at": 16,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 16,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 16,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 16,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      }
+    ]
+  },
+  {
+    "moveId": 522,
+    "moveName": "struggle-bug",
+    "versionGroupDetails": [
+      {
+        "version_group": "black-white",
+        "level_learned_at": 6,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "black-2-white-2",
+        "level_learned_at": 6,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "x-y",
+        "level_learned_at": 6,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "x-y",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 6,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 6,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 6,
+        "learn_method": "level-up"
+      }
+    ]
+  }
+]

@@ -1,0 +1,1559 @@
+[
+  {
+    "moveId": 3,
+    "moveName": "double-slap",
+    "versionGroupDetails": [
+      {
+        "version_group": "x-y",
+        "level_learned_at": 10,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 10,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 10,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 10,
+        "learn_method": "level-up"
+      }
+    ]
+  },
+  {
+    "moveId": 15,
+    "moveName": "cut",
+    "versionGroupDetails": [
+      {
+        "version_group": "x-y",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 24,
+    "moveName": "double-kick",
+    "versionGroupDetails": [
+      {
+        "version_group": "x-y",
+        "level_learned_at": 20,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 20,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 20,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 20,
+        "learn_method": "level-up"
+      }
+    ]
+  },
+  {
+    "moveId": 33,
+    "moveName": "tackle",
+    "versionGroupDetails": [
+      {
+        "version_group": "x-y",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      }
+    ]
+  },
+  {
+    "moveId": 36,
+    "moveName": "take-down",
+    "versionGroupDetails": [
+      {
+        "version_group": "x-y",
+        "level_learned_at": 15,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 15,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 15,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 15,
+        "learn_method": "level-up"
+      }
+    ]
+  },
+  {
+    "moveId": 43,
+    "moveName": "leer",
+    "versionGroupDetails": [
+      {
+        "version_group": "x-y",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      }
+    ]
+  },
+  {
+    "moveId": 57,
+    "moveName": "surf",
+    "versionGroupDetails": [
+      {
+        "version_group": "x-y",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 70,
+    "moveName": "strength",
+    "versionGroupDetails": [
+      {
+        "version_group": "x-y",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 89,
+    "moveName": "earthquake",
+    "versionGroupDetails": [
+      {
+        "version_group": "x-y",
+        "level_learned_at": 49,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "x-y",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 49,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 49,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 49,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 91,
+    "moveName": "dig",
+    "versionGroupDetails": [
+      {
+        "version_group": "x-y",
+        "level_learned_at": 33,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "x-y",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 33,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 33,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 33,
+        "learn_method": "level-up"
+      }
+    ]
+  },
+  {
+    "moveId": 92,
+    "moveName": "toxic",
+    "versionGroupDetails": [
+      {
+        "version_group": "x-y",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 97,
+    "moveName": "agility",
+    "versionGroupDetails": [
+      {
+        "version_group": "x-y",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      }
+    ]
+  },
+  {
+    "moveId": 98,
+    "moveName": "quick-attack",
+    "versionGroupDetails": [
+      {
+        "version_group": "x-y",
+        "level_learned_at": 7,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 7,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 7,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 7,
+        "learn_method": "level-up"
+      }
+    ]
+  },
+  {
+    "moveId": 104,
+    "moveName": "double-team",
+    "versionGroupDetails": [
+      {
+        "version_group": "x-y",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 111,
+    "moveName": "defense-curl",
+    "versionGroupDetails": [
+      {
+        "version_group": "x-y",
+        "level_learned_at": 0,
+        "learn_method": "egg"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "egg"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "egg"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "egg"
+      }
+    ]
+  },
+  {
+    "moveId": 156,
+    "moveName": "rest",
+    "versionGroupDetails": [
+      {
+        "version_group": "x-y",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 157,
+    "moveName": "rock-slide",
+    "versionGroupDetails": [
+      {
+        "version_group": "x-y",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 162,
+    "moveName": "super-fang",
+    "versionGroupDetails": [
+      {
+        "version_group": "x-y",
+        "level_learned_at": 42,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 42,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 42,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 42,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      }
+    ]
+  },
+  {
+    "moveId": 164,
+    "moveName": "substitute",
+    "versionGroupDetails": [
+      {
+        "version_group": "x-y",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 168,
+    "moveName": "thief",
+    "versionGroupDetails": [
+      {
+        "version_group": "x-y",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 173,
+    "moveName": "snore",
+    "versionGroupDetails": [
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      }
+    ]
+  },
+  {
+    "moveId": 175,
+    "moveName": "flail",
+    "versionGroupDetails": [
+      {
+        "version_group": "x-y",
+        "level_learned_at": 29,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 29,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 29,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 29,
+        "learn_method": "level-up"
+      }
+    ]
+  },
+  {
+    "moveId": 182,
+    "moveName": "protect",
+    "versionGroupDetails": [
+      {
+        "version_group": "x-y",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 188,
+    "moveName": "sludge-bomb",
+    "versionGroupDetails": [
+      {
+        "version_group": "x-y",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 189,
+    "moveName": "mud-slap",
+    "versionGroupDetails": [
+      {
+        "version_group": "x-y",
+        "level_learned_at": 13,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 13,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 13,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 13,
+        "learn_method": "level-up"
+      }
+    ]
+  },
+  {
+    "moveId": 191,
+    "moveName": "spikes",
+    "versionGroupDetails": [
+      {
+        "version_group": "x-y",
+        "level_learned_at": 0,
+        "learn_method": "egg"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "egg"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "egg"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "egg"
+      }
+    ]
+  },
+  {
+    "moveId": 201,
+    "moveName": "sandstorm",
+    "versionGroupDetails": [
+      {
+        "version_group": "x-y",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 205,
+    "moveName": "rollout",
+    "versionGroupDetails": [
+      {
+        "version_group": "x-y",
+        "level_learned_at": 0,
+        "learn_method": "egg"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "egg"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "egg"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "egg"
+      }
+    ]
+  },
+  {
+    "moveId": 207,
+    "moveName": "swagger",
+    "versionGroupDetails": [
+      {
+        "version_group": "x-y",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 213,
+    "moveName": "attract",
+    "versionGroupDetails": [
+      {
+        "version_group": "x-y",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 214,
+    "moveName": "sleep-talk",
+    "versionGroupDetails": [
+      {
+        "version_group": "x-y",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 216,
+    "moveName": "return",
+    "versionGroupDetails": [
+      {
+        "version_group": "x-y",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 218,
+    "moveName": "frustration",
+    "versionGroupDetails": [
+      {
+        "version_group": "x-y",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 231,
+    "moveName": "iron-tail",
+    "versionGroupDetails": [
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      }
+    ]
+  },
+  {
+    "moveId": 237,
+    "moveName": "hidden-power",
+    "versionGroupDetails": [
+      {
+        "version_group": "x-y",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 249,
+    "moveName": "rock-smash",
+    "versionGroupDetails": [
+      {
+        "version_group": "x-y",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 259,
+    "moveName": "torment",
+    "versionGroupDetails": [
+      {
+        "version_group": "x-y",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 263,
+    "moveName": "facade",
+    "versionGroupDetails": [
+      {
+        "version_group": "x-y",
+        "level_learned_at": 47,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "x-y",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 47,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 47,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 47,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 267,
+    "moveName": "nature-power",
+    "versionGroupDetails": [
+      {
+        "version_group": "x-y",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 278,
+    "moveName": "recycle",
+    "versionGroupDetails": [
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      }
+    ]
+  },
+  {
+    "moveId": 280,
+    "moveName": "brick-break",
+    "versionGroupDetails": [
+      {
+        "version_group": "x-y",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 283,
+    "moveName": "endeavor",
+    "versionGroupDetails": [
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      }
+    ]
+  },
+  {
+    "moveId": 290,
+    "moveName": "secret-power",
+    "versionGroupDetails": [
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 316,
+    "moveName": "odor-sleuth",
+    "versionGroupDetails": [
+      {
+        "version_group": "x-y",
+        "level_learned_at": 25,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 25,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 25,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 25,
+        "learn_method": "level-up"
+      }
+    ]
+  },
+  {
+    "moveId": 317,
+    "moveName": "rock-tomb",
+    "versionGroupDetails": [
+      {
+        "version_group": "x-y",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 339,
+    "moveName": "bulk-up",
+    "versionGroupDetails": [
+      {
+        "version_group": "x-y",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 340,
+    "moveName": "bounce",
+    "versionGroupDetails": [
+      {
+        "version_group": "x-y",
+        "level_learned_at": 38,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 38,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 38,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 38,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      }
+    ]
+  },
+  {
+    "moveId": 341,
+    "moveName": "mud-shot",
+    "versionGroupDetails": [
+      {
+        "version_group": "x-y",
+        "level_learned_at": 18,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 18,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 18,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 18,
+        "learn_method": "level-up"
+      }
+    ]
+  },
+  {
+    "moveId": 369,
+    "moveName": "u-turn",
+    "versionGroupDetails": [
+      {
+        "version_group": "x-y",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 371,
+    "moveName": "payback",
+    "versionGroupDetails": [
+      {
+        "version_group": "x-y",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 374,
+    "moveName": "fling",
+    "versionGroupDetails": [
+      {
+        "version_group": "x-y",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 387,
+    "moveName": "last-resort",
+    "versionGroupDetails": [
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      }
+    ]
+  },
+  {
+    "moveId": 442,
+    "moveName": "iron-head",
+    "versionGroupDetails": [
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      }
+    ]
+  },
+  {
+    "moveId": 444,
+    "moveName": "stone-edge",
+    "versionGroupDetails": [
+      {
+        "version_group": "x-y",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 447,
+    "moveName": "grass-knot",
+    "versionGroupDetails": [
+      {
+        "version_group": "x-y",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 479,
+    "moveName": "smack-down",
+    "versionGroupDetails": [
+      {
+        "version_group": "x-y",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 496,
+    "moveName": "round",
+    "versionGroupDetails": [
+      {
+        "version_group": "x-y",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 523,
+    "moveName": "bulldoze",
+    "versionGroupDetails": [
+      {
+        "version_group": "x-y",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 526,
+    "moveName": "work-up",
+    "versionGroupDetails": [
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 528,
+    "moveName": "wild-charge",
+    "versionGroupDetails": [
+      {
+        "version_group": "x-y",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 590,
+    "moveName": "confide",
+    "versionGroupDetails": [
+      {
+        "version_group": "x-y",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 612,
+    "moveName": "power-up-punch",
+    "versionGroupDetails": [
+      {
+        "version_group": "x-y",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  }
+]

@@ -1,10 +1,9 @@
-import { useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Image } from 'expo-image';
 import { Modal, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { router, useLocalSearchParams, type Href } from 'expo-router';
 
-import moveData from '../../assets/data/moves.json';
 import pokemonData from '../../assets/data/pokemon.json';
 import { GAMES, GAME_IDS, getRegionalDexKeys, type GameId, type RegionalDexKey } from '../../constants/games';
 import { useAppContext } from '../../context/AppContext';
@@ -62,24 +61,38 @@ type PokemonRecord = {
 	}[];
 };
 
-type MoveRecord = {
-	id: number;
-	name: string;
-	type: string;
-	category: 'physical' | 'special' | 'status';
-	power: number | null;
-	accuracy: number | null;
-	pp: number;
-	description: string;
-	effects?: { short?: string; full?: string };
-	learnedBy: {
-		pokemonId: number;
-		versionGroupDetails: {
-			version_group: string;
-			level_learned_at: number;
-			learn_method: string;
-		}[];
-	}[];
+// Base types
+export type MoveRecord = {
+    id: number;
+    name: string;
+    type: string;
+    category: string;
+    power: number | null;
+    accuracy: number | null;
+    pp: number | null;
+    description: string;
+};
+
+export type VersionGroupDetail = {
+    version_group: string;
+    level_learned_at: number;
+    learn_method: string;
+};
+
+export type PokemonMoveEntry = {
+    moveId: number;
+    moveName: string;
+    versionGroupDetails: VersionGroupDetail[];
+};
+
+export type PokemonMoveWithDetail = {
+    move: MoveRecord;
+    versionGroupDetails: VersionGroupDetail[];
+};
+
+type LearnableMove = {
+	move: MoveRecord;
+	detail: VersionGroupDetail;
 };
 
 type EncounterDetail = {
@@ -102,17 +115,113 @@ type LocationIndexRecord = {
 	pokemon: { pokemonId: number; versionDetails: LocationVersionDetail[] }[];
 };
 
+// Caches
+let movesIndexMap: Map<number, MoveRecord> | null = null;
+let movesIndexPromise: Promise<Map<number, MoveRecord>> | null = null;
+const pokemonMovesCache = new Map<number, PokemonMoveWithDetail[]>();
+
+/**
+ * Loads and caches the lightweight master move index (~200KB)
+ */
+export async function getOrLoadMovesIndex(): Promise<Map<number, MoveRecord>> {
+    if (movesIndexMap) return movesIndexMap;
+    if (!movesIndexPromise) {
+        movesIndexPromise = import('../../assets/data/moves.json')
+            .then(({ default: records }) => {
+                const map = new Map<number, MoveRecord>();
+                for (const move of records as unknown as MoveRecord[]) {
+                    map.set(move.id, move);
+                }
+                movesIndexMap = map;
+                return map;
+            })
+            .catch((err) => {
+                movesIndexPromise = null;
+                throw err;
+            });
+    }
+    return movesIndexPromise;
+}
+
+// Create a context for all json files in pokemon-moves directory
+// Path is relative to this source file
+const pokemonMovesContext = require.context('../../assets/data/pokemon-moves', false, /\.json$/);
+
+/**
+ * Fetches move learnset for a specific Pokémon on demand (< 5KB)
+ */
+export async function getMovesForPokemon(pokemonId: number): Promise<PokemonMoveWithDetail[]> {
+	if (!Number.isInteger(pokemonId) || pokemonId <= 0) {
+		return [];
+	}
+
+    // Check in-memory cache first
+    if (pokemonMovesCache.has(pokemonId)) {
+        return pokemonMovesCache.get(pokemonId)!;
+    }
+
+    // Ensure the lightweight master move index is ready
+    const movesMap = await getOrLoadMovesIndex();
+
+    try {
+        const key = `./${pokemonId}.json`;
+
+        // Verify file exists in bundled context
+        if (!pokemonMovesContext.keys().includes(key)) {
+            return [];
+        }
+
+        // Load the module synchronously or via context
+        const rawEntries = pokemonMovesContext(key) as PokemonMoveEntry[];
+
+        const result: PokemonMoveWithDetail[] = [];
+
+        for (const entry of rawEntries as PokemonMoveEntry[]) {
+            const move = movesMap.get(entry.moveId);
+            if (move) {
+                result.push({
+                    move,
+                    versionGroupDetails: entry.versionGroupDetails
+                });
+            }
+        }
+
+        // Cache the parsed result for quick re-use
+        pokemonMovesCache.set(pokemonId, result);
+        return result;
+
+    } catch (error) {
+        // Return empty array if the file doesn't exist (e.g. Pokémon has no moves)
+        return [];
+    }
+}
+
+let cachedLocationIndex: LocationIndexRecord[] | null = null;
+let locationIndexPromise: Promise<LocationIndexRecord[]> | null = null;
+
+function getOrLoadLocationIndex(): Promise<LocationIndexRecord[]> {
+	if (cachedLocationIndex) return Promise.resolve(cachedLocationIndex);
+	if (!locationIndexPromise) {
+		locationIndexPromise = import('../../assets/data/locations.json')
+			.then(({ default: records }) => {
+				if (!Array.isArray(records)) throw new Error('Invalid locations data');
+				cachedLocationIndex = records as unknown as LocationIndexRecord[];
+				return cachedLocationIndex;
+			})
+			.catch((error) => {
+				locationIndexPromise = null;
+				throw error;
+			});
+	}
+	return locationIndexPromise;
+}
+
 type SectionKey = 'stats' | 'forms' | 'abilities' | 'evolution' | 'locations' | 'moves';
-type LearnableMove = {
-	move: MoveRecord;
-	detail: MoveRecord['learnedBy'][number]['versionGroupDetails'][number];
-};
 
 type MoveFilter = 'all' | 'level-up' | 'tm' | 'tutor' | 'egg' | 'other';
 
 const POKEMON_RECORDS = pokemonData as unknown as PokemonRecord[];
 const POKEMON_BY_ID = new Map(POKEMON_RECORDS.map((entry) => [entry.id, entry]));
-const MOVE_RECORDS = moveData as unknown as MoveRecord[];
 const spriteContext = require.context('../../assets/sprites', false, /\.png$/);
 const SPRITE_BY_ID = new Map<number, number>();
 for (const assetPath of spriteContext.keys()) {
@@ -268,7 +377,7 @@ function describeEvolution(detail: EvolutionDetail) {
 	return conditions.length ? conditions.join(' · ') : 'No additional condition listed';
 }
 
-function LearnMethodLabel({ detail }: { detail: LearnableMove['detail'] }) {
+function LearnMethodLabel({ detail }: { detail: PokemonMoveWithDetail['versionGroupDetails'][number] }) {
 	if (detail.learn_method === 'level-up') return <Text>Level {detail.level_learned_at}</Text>;
 	if (detail.learn_method === 'tm') return <Text>TM / machine</Text>;
 	if (detail.learn_method === 'tutor') return <Text>Tutor</Text>;
@@ -307,7 +416,7 @@ function StatBars({ stats, baseStats, theme }: { stats: StatBlock; baseStats: St
 
 export default function PokemonDetailScreen() {
 	const theme = useTheme();
-	const { activeGame } = useAppContext();
+	const { activeGame, showLoading, hideLoading } = useAppContext();
 	const { id, listMode: routeListMode, regionKey: routeRegionKey } = useLocalSearchParams<{
 		id?: string | string[];
 		listMode?: string | string[];
@@ -326,8 +435,10 @@ export default function PokemonDetailScreen() {
 	const [section, setSection] = useState<SectionKey>('stats');
 	const [selectedMegaId, setSelectedMegaId] = useState<number | null>(null);
 	const [selectedMove, setSelectedMove] = useState<LearnableMove | null>(null);
+	const [moveIndex, setMoveIndex] = useState<Map<number, MoveRecord> | null>(movesIndexMap);
+	const [moveLoadError, setMoveLoadError] = useState(false);
 	const [selectedLocationId, setSelectedLocationId] = useState<number | null>(null);
-	const [locationIndex, setLocationIndex] = useState<LocationIndexRecord[] | null>(null);
+	const [locationIndex, setLocationIndex] = useState<LocationIndexRecord[] | null>(cachedLocationIndex);
 	const [locationIndexError, setLocationIndexError] = useState(false);
 	const [matchupVisible, setMatchupVisible] = useState(false);
 	const [matchupMode, setMatchupMode] = useState<'defense' | 'offense'>('defense');
@@ -372,19 +483,74 @@ export default function PokemonDetailScreen() {
 	);
 	const currentSection = visibleSections.some((item) => item.key === section) ? section : 'stats';
 	const availableAbilities = pokemon?.abilities.filter((ability) => engineGeneration >= 5 || !ability.isHidden) ?? [];
-	const learnableMoves: LearnableMove[] = pokemon
-		? MOVE_RECORDS.flatMap((move) => {
-			const learnedByPokemon = move.learnedBy.find((entry) => entry.pokemonId === pokemon.id);
-			return (learnedByPokemon?.versionGroupDetails ?? [])
-				.filter((detail) => detail.version_group === detailGame.versionGroupEngineKey)
-				.map((detail) => ({ move, detail }));
-		}).sort((first, second) => {
-			const methodOrder = (method: string) => method === 'level-up' ? 0 : method === 'tm' ? 1 : method === 'tutor' ? 2 : method.includes('egg') ? 3 : 4;
-			return methodOrder(first.detail.learn_method) - methodOrder(second.detail.learn_method)
-				|| first.detail.level_learned_at - second.detail.level_learned_at
-				|| first.move.name.localeCompare(second.move.name);
-		})
-		: [];
+
+	// const learnableMoves: LearnableMove[] = pokemon && moveIndex
+	// 	? (await getMovesForPokemon(pokemonId) ?? []).flatMap(({ move, versionGroupDetails }) =>
+	// 		versionGroupDetails
+	// 			.filter((detail) => detail.version_group === detailGame.versionGroupEngineKey)
+	// 			.map((detail) => ({ move, detail })),
+	// 	).sort((first, second) => {
+	// 		const methodOrder = (method: string) => method === 'level-up' ? 0 : method === 'tm' ? 1 : method === 'tutor' ? 2 : method.includes('egg') ? 3 : 4;
+	// 		return methodOrder(first.detail.learn_method) - methodOrder(second.detail.learn_method)
+	// 			|| first.detail.level_learned_at - second.detail.level_learned_at
+	// 			|| first.move.name.localeCompare(second.move.name);
+	// 	})
+	// 	: [];
+
+
+	const [learnableMoves, setLearnableMoves] = useState<{
+		move: MoveRecord;
+		detail: VersionGroupDetail;
+	}[]>([]);
+
+	useEffect(() => {
+		let isMounted = true;
+
+		// Reset or exit if missing core details
+		if (!pokemon || !pokemonId || !detailGame?.versionGroupEngineKey) {
+			setLearnableMoves([]);
+			hideLoading();
+			return;
+		}
+
+		showLoading('Loading move data');
+
+		getMovesForPokemon(pokemonId)
+			.then((rawMoves) => {
+				if (!isMounted) return;
+
+				const moves = (rawMoves ?? [])
+					.flatMap(({ move, versionGroupDetails }) =>
+						versionGroupDetails
+							.filter((detail) => detail.version_group === detailGame.versionGroupEngineKey)
+							.map((detail) => ({ move, detail }))
+					)
+					.sort((first, second) => {
+						const methodOrder = (method: string) =>
+							method === 'level-up' ? 0 : method === 'tm' ? 1 : method === 'tutor' ? 2 : method.includes('egg') ? 3 : 4;
+						return (
+							methodOrder(first.detail.learn_method) - methodOrder(second.detail.learn_method) ||
+							first.detail.level_learned_at - second.detail.level_learned_at ||
+							first.move.name.localeCompare(second.move.name)
+						);
+					});
+
+				setLearnableMoves(moves);
+			})
+			.catch((error) => {
+				console.error('Error loading pokemon moves:', error);
+				if (isMounted) setLearnableMoves([]);
+			})
+			.finally(() => {
+				if (isMounted) hideLoading();
+			});
+
+		return () => {
+			isMounted = false;
+		};
+	}, [pokemonId, pokemon, detailGame?.versionGroupEngineKey]);
+
+
 	const gameLocations = pokemon?.locations.filter((location) => location.versions.includes(detailGameId)) ?? [];
 	const rawEvolutionLine = pokemon ? getEvolutionLine(pokemon) : undefined;
 	const evolutionSteps = rawEvolutionLine?.steps
@@ -394,10 +560,14 @@ export default function PokemonDetailScreen() {
 	const activeListRegion = listMode === 'local' && regionKeyParam && DEX_GENERATIONS[regionKeyParam]
 		? regionKeyParam
 		: game.regionalDexKey;
-	const navigationRoster = listMode === 'local'
-		? POKEMON_RECORDS.filter((entry) => entry.localDexNumbers[activeListRegion] !== undefined)
-			.sort((first, second) => first.localDexNumbers[activeListRegion] - second.localDexNumbers[activeListRegion])
-		: POKEMON_RECORDS;
+	const navigationRoster = useMemo(() => {
+		if (listMode !== 'local') return POKEMON_RECORDS;
+		
+		// Extract and filter efficiently
+		return POKEMON_RECORDS
+			.filter((entry) => entry.localDexNumbers[activeListRegion] !== undefined)
+			.sort((a, b) => a.localDexNumbers[activeListRegion] - b.localDexNumbers[activeListRegion]);
+	}, [listMode, activeListRegion]);
 	const navigationIndex = pokemon ? navigationRoster.findIndex((entry) => entry.id === pokemon.id) : -1;
 	const previousPokemon = navigationIndex > 0 ? navigationRoster[navigationIndex - 1] : undefined;
 	const nextPokemon = navigationIndex >= 0 ? navigationRoster[navigationIndex + 1] : undefined;
@@ -420,6 +590,22 @@ export default function PokemonDetailScreen() {
 	const visibleMoves = learnableMoves.filter(({ detail }) =>
 		currentMoveFilter === 'all' || filterForMethod(detail.learn_method) === currentMoveFilter,
 	);
+	const loadMoveIndex = () => {
+		if (movesIndexMap) {
+			if (!moveIndex) setMoveIndex(movesIndexMap);
+			return;
+		}
+		setMoveLoadError(false);
+		showLoading('Loading move data');
+		getOrLoadMovesIndex()
+			.then((index) => setMoveIndex(index))
+			.catch(() => setMoveLoadError(true))
+			.finally(() => hideLoading());
+	};
+	const selectSection = (nextSection: SectionKey) => {
+		setSection(nextSection);
+		if (nextSection === 'moves') loadMoveIndex();
+	};
 	const typeSelection: TypeSelection | undefined = pokemon?.types.length
 		? pokemon.types.length > 1
 			? [pokemon.types[0] as PokemonType, pokemon.types[1] as PokemonType]
@@ -432,22 +618,32 @@ export default function PokemonDetailScreen() {
 			? pairedDetailGame
 			: undefined;
 
-	const navigateToPokemon = (targetId: number) => router.push({
-		pathname: '/pokemon/[id]',
-		params: {
-			id: String(targetId),
-			listMode,
-			regionKey: listMode === 'local' ? activeListRegion : '',
-		},
-	});
+	const navigateToPokemon = (targetId: number) => {
+		router.push({
+			pathname: '/pokemon/[id]',
+			params: {
+				id: String(targetId),
+				listMode,
+				regionKey: listMode === 'local' ? activeListRegion : '',
+			},
+		});
+	};
 
+	const loadLocationIndex = () => {
+		if (cachedLocationIndex) {
+			if (!locationIndex) setLocationIndex(cachedLocationIndex);
+			return;
+		}
+		setLocationIndexError(false);
+		showLoading('Loading encounter data');
+		getOrLoadLocationIndex()
+			.then((records) => setLocationIndex(records))
+			.catch(() => setLocationIndexError(true))
+			.finally(() => hideLoading());
+	};
 	const openLocation = (locationId: number) => {
 		setSelectedLocationId(locationId);
-		if (locationIndex) return;
-		setLocationIndexError(false);
-		void import('../../assets/data/locations.json')
-			.then(({ default: records }) => setLocationIndex(records as unknown as LocationIndexRecord[]))
-			.catch(() => setLocationIndexError(true));
+		loadLocationIndex();
 	};
 
 	if (!pokemon || !displayedStats) {
@@ -521,7 +717,7 @@ export default function PokemonDetailScreen() {
 							key={item.key}
 							accessibilityRole="tab"
 							accessibilityState={{ selected: currentSection === item.key }}
-							onPress={() => setSection(item.key)}
+							onPress={() => selectSection(item.key)}
 							style={({ pressed }) => [
 								styles.sectionTab,
 								{ backgroundColor: currentSection === item.key ? theme.text : theme.backgroundElement, opacity: pressed ? 0.75 : 1 },
@@ -639,7 +835,9 @@ export default function PokemonDetailScreen() {
 									);
 								})}
 							</View>
-							{visibleMoves.length ? visibleMoves.map((learnable, index) => (
+							{moveLoadError ? <EmptyState text="Move data could not be loaded." theme={theme} />
+								: !moveIndex ? <EmptyState text="Loading moves..." theme={theme} />
+									: visibleMoves.length ? visibleMoves.map((learnable, index) => (
 								<Pressable
 									key={`${learnable.move.id}-${learnable.detail.learn_method}-${learnable.detail.level_learned_at}-${index}`}
 									accessibilityRole="button"
@@ -671,7 +869,7 @@ export default function PokemonDetailScreen() {
 						<Text style={[styles.dexNavLabel, { color: theme.textSecondary }]}>PREVIOUS</Text>
 						<Text style={[styles.dexNavName, { color: theme.text }]} numberOfLines={1}>{previousPokemon ? titleCase(previousPokemon.name) : '—'}</Text>
 					</Pressable>
-					<Pressable accessibilityRole="button" onPress={() => router.replace('/' as Href)} style={[styles.dexListButton, { backgroundColor: theme.text }]}>
+					<Pressable accessibilityRole="button" onPress={() => router.navigate('/')} style={[styles.dexListButton, { backgroundColor: theme.text }]}>
 						<Text style={[styles.dexListButtonText, { color: theme.background }]}>Back to list</Text>
 					</Pressable>
 					<Pressable
@@ -863,7 +1061,7 @@ function TypeMatchupModal({
 	}
 
 	function MoveModal({ move, onClose, theme }: { move: MoveRecord | null; onClose: () => void; theme: ReturnType<typeof useTheme> }) {
-	const effectDescription = move?.effects?.full || move?.effects?.short || move?.description || 'No effect description is available.';
+	const effectDescription = move?.description || 'No effect description is available.';
 	return (
 		<Modal visible={move !== null} transparent animationType="slide" onRequestClose={onClose}>
 			<View style={styles.modalBackdrop}>
@@ -909,6 +1107,10 @@ function MoveFact({ label, value, theme }: { label: string; value: string; theme
 }
 
 const styles = StyleSheet.create({
+	container: {
+        flex: 1,
+        backgroundColor: '#121212', // Match contentStyle background
+    },
 	screen: { flex: 1 },
 	centered: { justifyContent: 'center', alignItems: 'center', padding: Spacing.four, gap: Spacing.two },
 	pageContent: {

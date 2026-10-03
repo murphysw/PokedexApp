@@ -1,0 +1,3623 @@
+[
+  {
+    "moveId": 15,
+    "moveName": "cut",
+    "versionGroupDetails": [
+      {
+        "version_group": "ruby-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "emerald",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "firered-leafgreen",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "diamond-pearl",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "platinum",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "black-white",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "black-2-white-2",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "x-y",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 29,
+    "moveName": "headbutt",
+    "versionGroupDetails": [
+      {
+        "version_group": "ruby-sapphire",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "ruby-sapphire",
+        "level_learned_at": 10,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "emerald",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "emerald",
+        "level_learned_at": 10,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "firered-leafgreen",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "firered-leafgreen",
+        "level_learned_at": 10,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "diamond-pearl",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "diamond-pearl",
+        "level_learned_at": 11,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "platinum",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "platinum",
+        "level_learned_at": 11,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 11,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "black-white",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "black-white",
+        "level_learned_at": 11,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "black-2-white-2",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "black-2-white-2",
+        "level_learned_at": 8,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "x-y",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "x-y",
+        "level_learned_at": 8,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 7,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 7,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 7,
+        "learn_method": "level-up"
+      }
+    ]
+  },
+  {
+    "moveId": 33,
+    "moveName": "tackle",
+    "versionGroupDetails": [
+      {
+        "version_group": "ruby-sapphire",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "emerald",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "firered-leafgreen",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "diamond-pearl",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "platinum",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "black-white",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "black-2-white-2",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "x-y",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      }
+    ]
+  },
+  {
+    "moveId": 34,
+    "moveName": "body-slam",
+    "versionGroupDetails": [
+      {
+        "version_group": "emerald",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "firered-leafgreen",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      }
+    ]
+  },
+  {
+    "moveId": 36,
+    "moveName": "take-down",
+    "versionGroupDetails": [
+      {
+        "version_group": "ruby-sapphire",
+        "level_learned_at": 25,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "emerald",
+        "level_learned_at": 25,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "firered-leafgreen",
+        "level_learned_at": 25,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "diamond-pearl",
+        "level_learned_at": 25,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "platinum",
+        "level_learned_at": 25,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 25,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "black-white",
+        "level_learned_at": 25,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "black-2-white-2",
+        "level_learned_at": 22,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "x-y",
+        "level_learned_at": 22,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 28,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 28,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 28,
+        "learn_method": "level-up"
+      }
+    ]
+  },
+  {
+    "moveId": 38,
+    "moveName": "double-edge",
+    "versionGroupDetails": [
+      {
+        "version_group": "ruby-sapphire",
+        "level_learned_at": 53,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "emerald",
+        "level_learned_at": 53,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "emerald",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "firered-leafgreen",
+        "level_learned_at": 53,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "firered-leafgreen",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "diamond-pearl",
+        "level_learned_at": 51,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "platinum",
+        "level_learned_at": 51,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 51,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "black-white",
+        "level_learned_at": 62,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "black-2-white-2",
+        "level_learned_at": 56,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "x-y",
+        "level_learned_at": 56,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 43,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 43,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 43,
+        "learn_method": "level-up"
+      }
+    ]
+  },
+  {
+    "moveId": 46,
+    "moveName": "roar",
+    "versionGroupDetails": [
+      {
+        "version_group": "ruby-sapphire",
+        "level_learned_at": 21,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "ruby-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "emerald",
+        "level_learned_at": 21,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "emerald",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "firered-leafgreen",
+        "level_learned_at": 21,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "firered-leafgreen",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "diamond-pearl",
+        "level_learned_at": 22,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "diamond-pearl",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "platinum",
+        "level_learned_at": 22,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "platinum",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 22,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "black-white",
+        "level_learned_at": 22,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "black-white",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "black-2-white-2",
+        "level_learned_at": 18,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "black-2-white-2",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "x-y",
+        "level_learned_at": 18,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "x-y",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 19,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 19,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 19,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 70,
+    "moveName": "strength",
+    "versionGroupDetails": [
+      {
+        "version_group": "ruby-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "emerald",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "firered-leafgreen",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "diamond-pearl",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "platinum",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "black-white",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "black-2-white-2",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "x-y",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 89,
+    "moveName": "earthquake",
+    "versionGroupDetails": [
+      {
+        "version_group": "ruby-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "emerald",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "firered-leafgreen",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "diamond-pearl",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "platinum",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "black-white",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "black-2-white-2",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "x-y",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 91,
+    "moveName": "dig",
+    "versionGroupDetails": [
+      {
+        "version_group": "ruby-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "emerald",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "firered-leafgreen",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "diamond-pearl",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "platinum",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "black-white",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "black-2-white-2",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "x-y",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 92,
+    "moveName": "toxic",
+    "versionGroupDetails": [
+      {
+        "version_group": "ruby-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "emerald",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "firered-leafgreen",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "diamond-pearl",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "platinum",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "black-white",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "black-2-white-2",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "x-y",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 102,
+    "moveName": "mimic",
+    "versionGroupDetails": [
+      {
+        "version_group": "emerald",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "firered-leafgreen",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      }
+    ]
+  },
+  {
+    "moveId": 104,
+    "moveName": "double-team",
+    "versionGroupDetails": [
+      {
+        "version_group": "ruby-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "emerald",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "firered-leafgreen",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "diamond-pearl",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "platinum",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "black-white",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "black-2-white-2",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "x-y",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 106,
+    "moveName": "harden",
+    "versionGroupDetails": [
+      {
+        "version_group": "ruby-sapphire",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "ruby-sapphire",
+        "level_learned_at": 4,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "emerald",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "emerald",
+        "level_learned_at": 4,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "firered-leafgreen",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "firered-leafgreen",
+        "level_learned_at": 4,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "diamond-pearl",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "diamond-pearl",
+        "level_learned_at": 4,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "platinum",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "platinum",
+        "level_learned_at": 4,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 4,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "black-white",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "black-white",
+        "level_learned_at": 4,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "black-2-white-2",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "x-y",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      }
+    ]
+  },
+  {
+    "moveId": 111,
+    "moveName": "defense-curl",
+    "versionGroupDetails": [
+      {
+        "version_group": "emerald",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      }
+    ]
+  },
+  {
+    "moveId": 156,
+    "moveName": "rest",
+    "versionGroupDetails": [
+      {
+        "version_group": "ruby-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "emerald",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "firered-leafgreen",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "diamond-pearl",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "platinum",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "black-white",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "black-2-white-2",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "x-y",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 157,
+    "moveName": "rock-slide",
+    "versionGroupDetails": [
+      {
+        "version_group": "emerald",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "firered-leafgreen",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "diamond-pearl",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "platinum",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "black-white",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "black-2-white-2",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "x-y",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 25,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 25,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 25,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 164,
+    "moveName": "substitute",
+    "versionGroupDetails": [
+      {
+        "version_group": "emerald",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "firered-leafgreen",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "diamond-pearl",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "platinum",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "black-white",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "black-2-white-2",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "x-y",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 173,
+    "moveName": "snore",
+    "versionGroupDetails": [
+      {
+        "version_group": "emerald",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "platinum",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "black-2-white-2",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      }
+    ]
+  },
+  {
+    "moveId": 180,
+    "moveName": "spite",
+    "versionGroupDetails": [
+      {
+        "version_group": "platinum",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "black-2-white-2",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      }
+    ]
+  },
+  {
+    "moveId": 182,
+    "moveName": "protect",
+    "versionGroupDetails": [
+      {
+        "version_group": "ruby-sapphire",
+        "level_learned_at": 37,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "ruby-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "emerald",
+        "level_learned_at": 37,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "emerald",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "firered-leafgreen",
+        "level_learned_at": 37,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "firered-leafgreen",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "diamond-pearl",
+        "level_learned_at": 34,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "diamond-pearl",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "platinum",
+        "level_learned_at": 34,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "platinum",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 34,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "black-white",
+        "level_learned_at": 34,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "black-white",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "black-2-white-2",
+        "level_learned_at": 29,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "black-2-white-2",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "x-y",
+        "level_learned_at": 29,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "x-y",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 16,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 16,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 16,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 189,
+    "moveName": "mud-slap",
+    "versionGroupDetails": [
+      {
+        "version_group": "ruby-sapphire",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "ruby-sapphire",
+        "level_learned_at": 7,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "emerald",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "emerald",
+        "level_learned_at": 7,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "emerald",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "firered-leafgreen",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "firered-leafgreen",
+        "level_learned_at": 7,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "diamond-pearl",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "diamond-pearl",
+        "level_learned_at": 8,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "platinum",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "platinum",
+        "level_learned_at": 8,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "platinum",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 8,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "black-white",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "black-white",
+        "level_learned_at": 8,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "black-2-white-2",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "black-2-white-2",
+        "level_learned_at": 4,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "x-y",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "x-y",
+        "level_learned_at": 4,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 4,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 4,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 4,
+        "learn_method": "level-up"
+      }
+    ]
+  },
+  {
+    "moveId": 201,
+    "moveName": "sandstorm",
+    "versionGroupDetails": [
+      {
+        "version_group": "ruby-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "emerald",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "firered-leafgreen",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "diamond-pearl",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "platinum",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "black-white",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "black-2-white-2",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "x-y",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 203,
+    "moveName": "endure",
+    "versionGroupDetails": [
+      {
+        "version_group": "emerald",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "diamond-pearl",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "platinum",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 205,
+    "moveName": "rollout",
+    "versionGroupDetails": [
+      {
+        "version_group": "emerald",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "platinum",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      }
+    ]
+  },
+  {
+    "moveId": 207,
+    "moveName": "swagger",
+    "versionGroupDetails": [
+      {
+        "version_group": "emerald",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "diamond-pearl",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "platinum",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "black-white",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "black-2-white-2",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "x-y",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 210,
+    "moveName": "fury-cutter",
+    "versionGroupDetails": [
+      {
+        "version_group": "emerald",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "platinum",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      }
+    ]
+  },
+  {
+    "moveId": 213,
+    "moveName": "attract",
+    "versionGroupDetails": [
+      {
+        "version_group": "ruby-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "emerald",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "firered-leafgreen",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "diamond-pearl",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "platinum",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "black-white",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "black-2-white-2",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "x-y",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 214,
+    "moveName": "sleep-talk",
+    "versionGroupDetails": [
+      {
+        "version_group": "emerald",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "diamond-pearl",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "platinum",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "black-2-white-2",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "x-y",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 216,
+    "moveName": "return",
+    "versionGroupDetails": [
+      {
+        "version_group": "ruby-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "emerald",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "firered-leafgreen",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "diamond-pearl",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "platinum",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "black-white",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "black-2-white-2",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "x-y",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 218,
+    "moveName": "frustration",
+    "versionGroupDetails": [
+      {
+        "version_group": "ruby-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "emerald",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "firered-leafgreen",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "diamond-pearl",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "platinum",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "black-white",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "black-2-white-2",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "x-y",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 231,
+    "moveName": "iron-tail",
+    "versionGroupDetails": [
+      {
+        "version_group": "ruby-sapphire",
+        "level_learned_at": 29,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "ruby-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "emerald",
+        "level_learned_at": 29,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "emerald",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "firered-leafgreen",
+        "level_learned_at": 29,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "firered-leafgreen",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "diamond-pearl",
+        "level_learned_at": 45,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "diamond-pearl",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "platinum",
+        "level_learned_at": 45,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "platinum",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 45,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "black-white",
+        "level_learned_at": 45,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "black-2-white-2",
+        "level_learned_at": 40,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "black-2-white-2",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "x-y",
+        "level_learned_at": 40,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 35,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 35,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 35,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      }
+    ]
+  },
+  {
+    "moveId": 232,
+    "moveName": "metal-claw",
+    "versionGroupDetails": [
+      {
+        "version_group": "ruby-sapphire",
+        "level_learned_at": 13,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "emerald",
+        "level_learned_at": 13,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "firered-leafgreen",
+        "level_learned_at": 13,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "diamond-pearl",
+        "level_learned_at": 15,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "platinum",
+        "level_learned_at": 15,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 15,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "black-white",
+        "level_learned_at": 15,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "black-2-white-2",
+        "level_learned_at": 11,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "x-y",
+        "level_learned_at": 11,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 10,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 10,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 10,
+        "learn_method": "level-up"
+      }
+    ]
+  },
+  {
+    "moveId": 237,
+    "moveName": "hidden-power",
+    "versionGroupDetails": [
+      {
+        "version_group": "ruby-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "emerald",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "firered-leafgreen",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "diamond-pearl",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "platinum",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "black-white",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "black-2-white-2",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "x-y",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 240,
+    "moveName": "rain-dance",
+    "versionGroupDetails": [
+      {
+        "version_group": "ruby-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "emerald",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "firered-leafgreen",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "diamond-pearl",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "platinum",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "black-white",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "black-2-white-2",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "x-y",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 241,
+    "moveName": "sunny-day",
+    "versionGroupDetails": [
+      {
+        "version_group": "ruby-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "emerald",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "firered-leafgreen",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "diamond-pearl",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "platinum",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "black-white",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "black-2-white-2",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "x-y",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 246,
+    "moveName": "ancient-power",
+    "versionGroupDetails": [
+      {
+        "version_group": "platinum",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      }
+    ]
+  },
+  {
+    "moveId": 249,
+    "moveName": "rock-smash",
+    "versionGroupDetails": [
+      {
+        "version_group": "ruby-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "emerald",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "firered-leafgreen",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "diamond-pearl",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "platinum",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "black-white",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "black-2-white-2",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "x-y",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 253,
+    "moveName": "uproar",
+    "versionGroupDetails": [
+      {
+        "version_group": "platinum",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "black-2-white-2",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      }
+    ]
+  },
+  {
+    "moveId": 263,
+    "moveName": "facade",
+    "versionGroupDetails": [
+      {
+        "version_group": "ruby-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "emerald",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "firered-leafgreen",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "diamond-pearl",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "platinum",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "black-white",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "black-2-white-2",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "x-y",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 276,
+    "moveName": "superpower",
+    "versionGroupDetails": [
+      {
+        "version_group": "platinum",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "black-2-white-2",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      }
+    ]
+  },
+  {
+    "moveId": 283,
+    "moveName": "endeavor",
+    "versionGroupDetails": [
+      {
+        "version_group": "platinum",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "black-2-white-2",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      }
+    ]
+  },
+  {
+    "moveId": 290,
+    "moveName": "secret-power",
+    "versionGroupDetails": [
+      {
+        "version_group": "ruby-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "emerald",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "firered-leafgreen",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "diamond-pearl",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "platinum",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 317,
+    "moveName": "rock-tomb",
+    "versionGroupDetails": [
+      {
+        "version_group": "ruby-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "emerald",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "firered-leafgreen",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "diamond-pearl",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "platinum",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "black-white",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "black-2-white-2",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "x-y",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 13,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 13,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 13,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 319,
+    "moveName": "metal-sound",
+    "versionGroupDetails": [
+      {
+        "version_group": "ruby-sapphire",
+        "level_learned_at": 45,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "emerald",
+        "level_learned_at": 45,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "firered-leafgreen",
+        "level_learned_at": 45,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "diamond-pearl",
+        "level_learned_at": 40,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "platinum",
+        "level_learned_at": 40,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 40,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "black-white",
+        "level_learned_at": 40,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "black-2-white-2",
+        "level_learned_at": 34,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "x-y",
+        "level_learned_at": 34,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 31,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 31,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 31,
+        "learn_method": "level-up"
+      }
+    ]
+  },
+  {
+    "moveId": 332,
+    "moveName": "aerial-ace",
+    "versionGroupDetails": [
+      {
+        "version_group": "ruby-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "emerald",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "firered-leafgreen",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "diamond-pearl",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "platinum",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "black-white",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "black-2-white-2",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "x-y",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 334,
+    "moveName": "iron-defense",
+    "versionGroupDetails": [
+      {
+        "version_group": "ruby-sapphire",
+        "level_learned_at": 17,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "emerald",
+        "level_learned_at": 17,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "firered-leafgreen",
+        "level_learned_at": 17,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "diamond-pearl",
+        "level_learned_at": 18,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "platinum",
+        "level_learned_at": 18,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "platinum",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 18,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "black-white",
+        "level_learned_at": 18,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "black-2-white-2",
+        "level_learned_at": 15,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "black-2-white-2",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "x-y",
+        "level_learned_at": 15,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 39,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 39,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 39,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      }
+    ]
+  },
+  {
+    "moveId": 351,
+    "moveName": "shock-wave",
+    "versionGroupDetails": [
+      {
+        "version_group": "ruby-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "emerald",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "firered-leafgreen",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "diamond-pearl",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "platinum",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      }
+    ]
+  },
+  {
+    "moveId": 352,
+    "moveName": "water-pulse",
+    "versionGroupDetails": [
+      {
+        "version_group": "ruby-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "emerald",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "firered-leafgreen",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "diamond-pearl",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "platinum",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      }
+    ]
+  },
+  {
+    "moveId": 363,
+    "moveName": "natural-gift",
+    "versionGroupDetails": [
+      {
+        "version_group": "diamond-pearl",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "platinum",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 368,
+    "moveName": "metal-burst",
+    "versionGroupDetails": [
+      {
+        "version_group": "diamond-pearl",
+        "level_learned_at": 56,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "platinum",
+        "level_learned_at": 56,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 56,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "black-white",
+        "level_learned_at": 67,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "black-2-white-2",
+        "level_learned_at": 62,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "x-y",
+        "level_learned_at": 62,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 55,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 55,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 55,
+        "learn_method": "level-up"
+      }
+    ]
+  },
+  {
+    "moveId": 393,
+    "moveName": "magnet-rise",
+    "versionGroupDetails": [
+      {
+        "version_group": "platinum",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "black-2-white-2",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      }
+    ]
+  },
+  {
+    "moveId": 397,
+    "moveName": "rock-polish",
+    "versionGroupDetails": [
+      {
+        "version_group": "diamond-pearl",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "platinum",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "black-white",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "black-2-white-2",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "x-y",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 414,
+    "moveName": "earth-power",
+    "versionGroupDetails": [
+      {
+        "version_group": "platinum",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "black-2-white-2",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      }
+    ]
+  },
+  {
+    "moveId": 421,
+    "moveName": "shadow-claw",
+    "versionGroupDetails": [
+      {
+        "version_group": "diamond-pearl",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "platinum",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "black-white",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "black-2-white-2",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "x-y",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 442,
+    "moveName": "iron-head",
+    "versionGroupDetails": [
+      {
+        "version_group": "diamond-pearl",
+        "level_learned_at": 29,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "platinum",
+        "level_learned_at": 29,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "platinum",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 29,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "black-white",
+        "level_learned_at": 29,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "black-2-white-2",
+        "level_learned_at": 25,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "black-2-white-2",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "x-y",
+        "level_learned_at": 25,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 22,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 22,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 22,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      }
+    ]
+  },
+  {
+    "moveId": 444,
+    "moveName": "stone-edge",
+    "versionGroupDetails": [
+      {
+        "version_group": "diamond-pearl",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "platinum",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "black-white",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "black-2-white-2",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "x-y",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 445,
+    "moveName": "captivate",
+    "versionGroupDetails": [
+      {
+        "version_group": "diamond-pearl",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "platinum",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 446,
+    "moveName": "stealth-rock",
+    "versionGroupDetails": [
+      {
+        "version_group": "diamond-pearl",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "platinum",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "black-2-white-2",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      }
+    ]
+  },
+  {
+    "moveId": 468,
+    "moveName": "hone-claws",
+    "versionGroupDetails": [
+      {
+        "version_group": "black-white",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "black-2-white-2",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "x-y",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 475,
+    "moveName": "autotomize",
+    "versionGroupDetails": [
+      {
+        "version_group": "black-white",
+        "level_learned_at": 51,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "black-2-white-2",
+        "level_learned_at": 45,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "x-y",
+        "level_learned_at": 45,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 47,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 47,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 47,
+        "learn_method": "level-up"
+      }
+    ]
+  },
+  {
+    "moveId": 484,
+    "moveName": "heavy-slam",
+    "versionGroupDetails": [
+      {
+        "version_group": "black-white",
+        "level_learned_at": 56,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "black-2-white-2",
+        "level_learned_at": 51,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "x-y",
+        "level_learned_at": 51,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 51,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 51,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 51,
+        "learn_method": "level-up"
+      }
+    ]
+  },
+  {
+    "moveId": 496,
+    "moveName": "round",
+    "versionGroupDetails": [
+      {
+        "version_group": "black-white",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "black-2-white-2",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "x-y",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 523,
+    "moveName": "bulldoze",
+    "versionGroupDetails": [
+      {
+        "version_group": "black-white",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "black-2-white-2",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "x-y",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 590,
+    "moveName": "confide",
+    "versionGroupDetails": [
+      {
+        "version_group": "x-y",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tm"
+      }
+    ]
+  },
+  {
+    "moveId": 707,
+    "moveName": "stomping-tantrum",
+    "versionGroupDetails": [
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      }
+    ]
+  }
+]

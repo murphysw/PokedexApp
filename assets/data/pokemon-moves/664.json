@@ -1,0 +1,188 @@
+[
+  {
+    "moveId": 33,
+    "moveName": "tackle",
+    "versionGroupDetails": [
+      {
+        "version_group": "x-y",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      }
+    ]
+  },
+  {
+    "moveId": 77,
+    "moveName": "poison-powder",
+    "versionGroupDetails": [
+      {
+        "version_group": "x-y",
+        "level_learned_at": 0,
+        "learn_method": "egg"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "egg"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "egg"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "egg"
+      }
+    ]
+  },
+  {
+    "moveId": 78,
+    "moveName": "stun-spore",
+    "versionGroupDetails": [
+      {
+        "version_group": "x-y",
+        "level_learned_at": 6,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "x-y",
+        "level_learned_at": 0,
+        "learn_method": "egg"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 6,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "egg"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 6,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "egg"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 6,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "egg"
+      }
+    ]
+  },
+  {
+    "moveId": 81,
+    "moveName": "string-shot",
+    "versionGroupDetails": [
+      {
+        "version_group": "x-y",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      }
+    ]
+  },
+  {
+    "moveId": 450,
+    "moveName": "bug-bite",
+    "versionGroupDetails": [
+      {
+        "version_group": "x-y",
+        "level_learned_at": 15,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 15,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 15,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 15,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "tutor"
+      }
+    ]
+  },
+  {
+    "moveId": 476,
+    "moveName": "rage-powder",
+    "versionGroupDetails": [
+      {
+        "version_group": "x-y",
+        "level_learned_at": 0,
+        "learn_method": "egg"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 0,
+        "learn_method": "egg"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 0,
+        "learn_method": "egg"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 0,
+        "learn_method": "egg"
+      }
+    ]
+  }
+]

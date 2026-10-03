@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import { router, type Href } from 'expo-router';
+import { router, usePathname, type Href } from 'expo-router';
 import { Modal, Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { Spacing } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
+import { useAppContext } from '../../context/AppContext';
 
 const DESTINATIONS: { label: string; href: Href }[] = [
   { label: 'Pokédex', href: '/' as Href },
@@ -12,10 +13,13 @@ const DESTINATIONS: { label: string; href: Href }[] = [
 
 export default function AppNavigationMenu() {
   const theme = useTheme();
+  const { showLoading } = useAppContext();
+  const pathname = usePathname();
   const [visible, setVisible] = useState(false);
 
   const navigate = (href: Href) => {
     setVisible(false);
+    if (String(href) === pathname) return;
     router.replace(href);
   };
 
@@ -48,6 +52,20 @@ export default function AppNavigationMenu() {
                 <Text style={[styles.menuArrow, { color: theme.textSecondary }]}>›</Text>
               </Pressable>
             ))}
+            <Pressable
+              accessibilityRole="link"
+              accessibilityLabel="Open a random Pokémon"
+              onPress={() => {
+                const pokemonId = Math.floor(Math.random() * 807) + 1;
+                setVisible(false);
+                if (pathname === `/pokemon/${pokemonId}`) return;
+                showLoading('Finding a random Pokémon');
+                router.push({ pathname: '/pokemon/[id]', params: { id: String(pokemonId), listMode: 'national' } });
+              }}
+              style={({ pressed }) => [styles.menuItem, { borderBottomColor: theme.backgroundSelected, opacity: pressed ? 0.68 : 1 }]}>
+              <Text style={[styles.menuItemText, { color: theme.text }]}>Random Pokémon</Text>
+              <Text style={[styles.menuArrow, { color: theme.textSecondary }]}>›</Text>
+            </Pressable>
           </View>
         </View>
       </Modal>

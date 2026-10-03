@@ -59,6 +59,8 @@ export default function PokedexListScreen() {
 		toggleCaught,
 		toggleLivingDex,
 		batchUpdateStatus,
+		showLoading,
+		hideLoading,
 	} = useAppContext();
 	const [mode, setMode] = useState<ListMode>('local');
 	const [query, setQuery] = useState('');
@@ -72,20 +74,45 @@ export default function PokedexListScreen() {
 	const game = GAMES[validGameId];
 	const regionalKeys = getRegionalDexKeys(game);
 
+	// Pre-create index maps outside component if possible, or memoize lookup
+	const gameKeysSet = useMemo(() => new Set(regionalKeys), [regionalKeys]);
+
 	const roster = useMemo(() => {
-		const records = mode === 'national'
-			? [...POKEMON_RECORDS]
-			: POKEMON_RECORDS.filter((pokemon) =>
-				regionalKeys.some((key) => pokemon.localDexNumbers[key] !== undefined),
-			);
-		return records.sort((first, second) => {
-			if (mode === 'national') return first.nationalNo - second.nationalNo;
-			const firstKey = regionalKeys.find((key) => first.localDexNumbers[key] !== undefined);
-			const secondKey = regionalKeys.find((key) => second.localDexNumbers[key] !== undefined);
-			return (firstKey ? first.localDexNumbers[firstKey] : first.nationalNo)
-				- (secondKey ? second.localDexNumbers[secondKey] : second.nationalNo);
-		});
+		if (mode === 'national') {
+			return POKEMON_RECORDS;
+		}
+		
+		// Fast filter: check if any regional key exists
+		const filtered = POKEMON_RECORDS.filter((p) =>
+			regionalKeys.some((k) => p.localDexNumbers[k] !== undefined)
+		);
+
+		// Pre-fetch primary regional dex number for fast sorting
+		return filtered.map((p) => {
+			const primaryKey = regionalKeys.find((k) => p.localDexNumbers[k] !== undefined);
+			return {
+			record: p,
+			sortNum: primaryKey ? p.localDexNumbers[primaryKey] : p.nationalNo,
+			};
+		})
+		.sort((a, b) => a.sortNum - b.sortNum)
+		.map((item) => item.record);
 	}, [mode, regionalKeys]);
+	
+	// const roster = useMemo(() => {
+	// 	const records = mode === 'national'
+	// 		? [...POKEMON_RECORDS]
+	// 		: POKEMON_RECORDS.filter((pokemon) =>
+	// 			regionalKeys.some((key) => pokemon.localDexNumbers[key] !== undefined),
+	// 		);
+	// 	return records.sort((first, second) => {
+	// 		if (mode === 'national') return first.nationalNo - second.nationalNo;
+	// 		const firstKey = regionalKeys.find((key) => first.localDexNumbers[key] !== undefined);
+	// 		const secondKey = regionalKeys.find((key) => second.localDexNumbers[key] !== undefined);
+	// 		return (firstKey ? first.localDexNumbers[firstKey] : first.nationalNo)
+	// 			- (secondKey ? second.localDexNumbers[secondKey] : second.nationalNo);
+	// 	});
+	// }, [mode, regionalKeys]);
 
 	const statusFilteredRecords = useMemo(() => roster.filter((pokemon) => {
 		const caught = Boolean(caughtMap[`${validGameId}_${pokemon.id}`]);
@@ -136,19 +163,38 @@ export default function PokedexListScreen() {
 	const allVisibleSelected = visibleRecords.length > 0
 		&& visibleRecords.every((pokemon) => selectedIds.has(pokemon.id));
 	const activeFilterCount = Number(listFilters.caught !== 'all') + Number(listFilters.livingDex !== 'all');
-
+	// const changeMode = (nextMode: ListMode) => {
+	// 	if (nextMode === mode) return;
+	// 	setMode(nextMode);
+	// 	setSelectedIds(new Set());
+	// 	setFeedback('');
+	// };
 	const changeMode = (nextMode: ListMode) => {
-		setMode(nextMode);
-		setSelectedIds(new Set());
-		setFeedback('');
+		if (nextMode === mode) return;
+		showLoading('Switching dex view...');
+		
+		// Give React one frame to render the modal spinner before running heavy JS
+		setTimeout(() => {
+			setMode(nextMode);
+			setSelectedIds(new Set());
+			setFeedback('');
+			hideLoading();
+		}, 50);
 	};
 
-	const changeGame = (gameId: GameId) => {
+	const changeGame = async (gameId: GameId) => {
 		setGamePickerVisible(false);
 		setSelectedIds(new Set());
-		void setActiveGame(gameId)
-			.then(() => setFeedback(''))
-			.catch(() => setFeedback('Could not save the active game. Try again.'));
+		if (gameId === validGameId) return;
+		showLoading('Changing game');
+		try {
+			await setActiveGame(gameId);
+			setFeedback('');
+		} catch {
+			setFeedback('Could not save the active game. Try again.');
+		} finally {
+			hideLoading();
+		}
 	};
 
 	const updateFilter = (key: 'caught' | 'livingDex', value: StatusFilter) => {
@@ -178,6 +224,7 @@ export default function PokedexListScreen() {
 		const pokemonIds = Array.from(selectedIds);
 		if (!pokemonIds.length || saving) return;
 		setSaving(true);
+		showLoading(statusType === 'caught' ? 'Saving caught status' : 'Saving Living Dex status');
 		try {
 			await batchUpdateStatus(validGameId, pokemonIds, statusType, value);
 			const statusLabel = statusType === 'caught' ? 'Caught' : 'Living Dex';
@@ -187,6 +234,7 @@ export default function PokedexListScreen() {
 			setFeedback('Could not save those updates. Try again.');
 		} finally {
 			setSaving(false);
+			hideLoading();
 		}
 	};
 
@@ -212,10 +260,12 @@ export default function PokedexListScreen() {
 				<Pressable
 					accessibilityRole="link"
 					accessibilityLabel={`Open ${titleCase(item.name)}, National number ${item.nationalNo}`}
-					onPress={() => router.push({
-						pathname: '/pokemon/[id]',
-						params: { id: String(item.id), listMode: mode, regionKey: mode === 'local' ? localDexKey ?? '' : '' },
-					})}
+					onPress={() => {
+						router.push({
+							pathname: '/pokemon/[id]',
+							params: { id: String(item.id), listMode: mode, regionKey: mode === 'local' ? localDexKey ?? '' : '' },
+						});
+					}}
 					style={({ pressed }) => [styles.pokemonMain, { opacity: pressed ? 0.72 : 1 }]}>
 					<View style={[styles.spriteFrame, { backgroundColor: theme.backgroundElement }]}>
 						{sprite ? (
@@ -352,7 +402,8 @@ export default function PokedexListScreen() {
 					keyboardShouldPersistTaps="handled"
 					initialNumToRender={14}
 					maxToRenderPerBatch={16}
-					windowSize={9}
+					windowSize={5}
+					removeClippedSubviews
 					contentContainerStyle={styles.listContent}
 					ListEmptyComponent={<Text style={[styles.emptyList, { color: theme.textSecondary }]}>No Pokémon match this search.</Text>}
 				/>

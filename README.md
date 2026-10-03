@@ -19,3 +19,7 @@ python scripts/build_dex_db.py
 ```
 
 Generated data is stored in `assets/data/` and sprites in `assets/sprites/`. See [SPECIFICATION.md](SPECIFICATION.md) for schemas, remake rules, and application requirements.
+
+## Credits
+
+The loading animation is “Pokeball (gif)” by HarmonicaBoi, used with credit: [DeviantArt](https://www.deviantart.com/harmonicaboi/art/Pokeball-(gif)-684492045).

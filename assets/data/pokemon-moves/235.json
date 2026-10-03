@@ -1,0 +1,708 @@
+[
+  {
+    "moveId": 166,
+    "moveName": "sketch",
+    "versionGroupDetails": [
+      {
+        "version_group": "gold-silver",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "gold-silver",
+        "level_learned_at": 11,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "gold-silver",
+        "level_learned_at": 21,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "gold-silver",
+        "level_learned_at": 31,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "gold-silver",
+        "level_learned_at": 41,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "gold-silver",
+        "level_learned_at": 51,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "gold-silver",
+        "level_learned_at": 61,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "gold-silver",
+        "level_learned_at": 71,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "gold-silver",
+        "level_learned_at": 81,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "gold-silver",
+        "level_learned_at": 91,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "crystal",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "crystal",
+        "level_learned_at": 11,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "crystal",
+        "level_learned_at": 21,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "crystal",
+        "level_learned_at": 31,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "crystal",
+        "level_learned_at": 41,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "crystal",
+        "level_learned_at": 51,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "crystal",
+        "level_learned_at": 61,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "crystal",
+        "level_learned_at": 71,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "crystal",
+        "level_learned_at": 81,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "crystal",
+        "level_learned_at": 91,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "ruby-sapphire",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "ruby-sapphire",
+        "level_learned_at": 11,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "ruby-sapphire",
+        "level_learned_at": 21,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "ruby-sapphire",
+        "level_learned_at": 31,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "ruby-sapphire",
+        "level_learned_at": 41,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "ruby-sapphire",
+        "level_learned_at": 51,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "ruby-sapphire",
+        "level_learned_at": 61,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "ruby-sapphire",
+        "level_learned_at": 71,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "ruby-sapphire",
+        "level_learned_at": 81,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "ruby-sapphire",
+        "level_learned_at": 91,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "emerald",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "emerald",
+        "level_learned_at": 11,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "emerald",
+        "level_learned_at": 21,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "emerald",
+        "level_learned_at": 31,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "emerald",
+        "level_learned_at": 41,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "emerald",
+        "level_learned_at": 51,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "emerald",
+        "level_learned_at": 61,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "emerald",
+        "level_learned_at": 71,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "emerald",
+        "level_learned_at": 81,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "emerald",
+        "level_learned_at": 91,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "firered-leafgreen",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "firered-leafgreen",
+        "level_learned_at": 11,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "firered-leafgreen",
+        "level_learned_at": 21,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "firered-leafgreen",
+        "level_learned_at": 31,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "firered-leafgreen",
+        "level_learned_at": 41,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "firered-leafgreen",
+        "level_learned_at": 51,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "firered-leafgreen",
+        "level_learned_at": 61,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "firered-leafgreen",
+        "level_learned_at": 71,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "firered-leafgreen",
+        "level_learned_at": 81,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "firered-leafgreen",
+        "level_learned_at": 91,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "diamond-pearl",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "diamond-pearl",
+        "level_learned_at": 11,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "diamond-pearl",
+        "level_learned_at": 21,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "diamond-pearl",
+        "level_learned_at": 31,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "diamond-pearl",
+        "level_learned_at": 41,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "diamond-pearl",
+        "level_learned_at": 51,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "diamond-pearl",
+        "level_learned_at": 61,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "diamond-pearl",
+        "level_learned_at": 71,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "diamond-pearl",
+        "level_learned_at": 81,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "diamond-pearl",
+        "level_learned_at": 91,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "platinum",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "platinum",
+        "level_learned_at": 11,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "platinum",
+        "level_learned_at": 21,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "platinum",
+        "level_learned_at": 31,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "platinum",
+        "level_learned_at": 41,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "platinum",
+        "level_learned_at": 51,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "platinum",
+        "level_learned_at": 61,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "platinum",
+        "level_learned_at": 71,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "platinum",
+        "level_learned_at": 81,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "platinum",
+        "level_learned_at": 91,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 11,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 21,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 31,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 41,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 51,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 61,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 71,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 81,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "heartgold-soulsilver",
+        "level_learned_at": 91,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "black-white",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "black-white",
+        "level_learned_at": 11,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "black-white",
+        "level_learned_at": 21,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "black-white",
+        "level_learned_at": 31,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "black-white",
+        "level_learned_at": 41,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "black-white",
+        "level_learned_at": 51,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "black-white",
+        "level_learned_at": 61,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "black-white",
+        "level_learned_at": 71,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "black-white",
+        "level_learned_at": 81,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "black-white",
+        "level_learned_at": 91,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "black-2-white-2",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "black-2-white-2",
+        "level_learned_at": 11,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "black-2-white-2",
+        "level_learned_at": 21,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "black-2-white-2",
+        "level_learned_at": 31,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "black-2-white-2",
+        "level_learned_at": 41,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "black-2-white-2",
+        "level_learned_at": 51,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "black-2-white-2",
+        "level_learned_at": 61,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "black-2-white-2",
+        "level_learned_at": 71,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "black-2-white-2",
+        "level_learned_at": 81,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "black-2-white-2",
+        "level_learned_at": 91,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "x-y",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "x-y",
+        "level_learned_at": 11,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "x-y",
+        "level_learned_at": 21,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "x-y",
+        "level_learned_at": 31,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "x-y",
+        "level_learned_at": 41,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "x-y",
+        "level_learned_at": 51,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "x-y",
+        "level_learned_at": 61,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "x-y",
+        "level_learned_at": 71,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "x-y",
+        "level_learned_at": 81,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "x-y",
+        "level_learned_at": 91,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 11,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 21,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 31,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 41,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 51,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 61,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 71,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 81,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "omega-ruby-alpha-sapphire",
+        "level_learned_at": 91,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 11,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 21,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 31,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 41,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 51,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 61,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 71,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 81,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 91,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 11,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 21,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 31,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 41,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 51,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 61,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 71,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 81,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 91,
+        "learn_method": "level-up"
+      }
+    ]
+  }
+]

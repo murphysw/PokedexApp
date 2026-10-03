@@ -1,0 +1,34 @@
+[
+  {
+    "moveId": 100,
+    "moveName": "teleport",
+    "versionGroupDetails": [
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 23,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 23,
+        "learn_method": "level-up"
+      }
+    ]
+  },
+  {
+    "moveId": 150,
+    "moveName": "splash",
+    "versionGroupDetails": [
+      {
+        "version_group": "sun-moon",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      },
+      {
+        "version_group": "ultra-sun-ultra-moon",
+        "level_learned_at": 1,
+        "learn_method": "level-up"
+      }
+    ]
+  }
+]

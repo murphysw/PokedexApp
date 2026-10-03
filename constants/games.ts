@@ -346,6 +346,13 @@ export const GAMES: Record<GameId, GameMetadata> = {
 	},
 };
 
+const REGIONAL_DEX_KEYS_CACHE = new Map<GameMetadata, readonly RegionalDexKey[]>();
+
 export function getRegionalDexKeys(game: GameMetadata): readonly RegionalDexKey[] {
-	return [game.regionalDexKey, ...(game.additionalRegionalDexKeys ?? [])];
+	let keys = REGIONAL_DEX_KEYS_CACHE.get(game);
+	if (!keys) {
+		keys = Object.freeze([game.regionalDexKey, ...(game.additionalRegionalDexKeys ?? [])]);
+		REGIONAL_DEX_KEYS_CACHE.set(game, keys);
+	}
+	return keys;
 }

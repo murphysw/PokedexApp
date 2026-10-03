@@ -644,7 +644,7 @@ def main() -> int:
 		for location in locations.values():
 			location["pokemon"].sort(key=lambda entry: entry["pokemonId"])
 		write_json("pokemon.json", pokemon_records)
-		write_json("moves.json", sorted(moves.values(), key=lambda move: move["id"]))
+		write_json("moves.json", sorted(moves.values(), key=lambda move: move["id"]), compact=True)
 		write_json("locations.json", sorted(locations.values(), key=lambda location: location["id"]), compact=True)
 		print(f"JSON databases written to {DATA_DIR}")
 	else:

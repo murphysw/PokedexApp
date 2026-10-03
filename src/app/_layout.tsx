@@ -1,29 +1,44 @@
-import { DarkTheme, DefaultTheme, Stack, ThemeProvider } from 'expo-router';
-import { useColorScheme } from 'react-native';
+import { DarkTheme, Stack, ThemeProvider, usePathname } from 'expo-router';
+import { useEffect } from 'react';
 
-import { AppProvider } from '../../context/AppContext';
 import AppNavigationMenu from '@/components/app-navigation-menu';
+import LoadingOverlay from '@/components/loading-overlay';
+import { AppProvider, useLoading } from '../../context/AppContext';
 
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
-  const theme = colorScheme === 'dark' ? DarkTheme : DefaultTheme;
-  return (
-    <AppProvider>
-      <ThemeProvider value={theme}>
-        <Stack
-          initialRouteName="(tabs)"
-          screenOptions={{
-            headerShown: true,
-            headerLeft: () => <AppNavigationMenu />,
-            headerStyle: { backgroundColor: theme.colors.card },
-            headerTintColor: theme.colors.text,
-            headerShadowVisible: false,
-            contentStyle: { backgroundColor: theme.colors.background },
-          }}>
-          <Stack.Screen name="(tabs)" options={{ title: 'Pokédex' }} />
-          <Stack.Screen name="pokemon/[id]" options={{ headerTitle: '' }} />
-        </Stack>
-      </ThemeProvider>
-    </AppProvider>
-  );
+	return (
+		<AppProvider>
+			<RootNavigator />
+		</AppProvider>
+	);
+}
+
+function RootNavigator() {
+	const pathname = usePathname();
+	const { hideLoading } = useLoading();
+	const theme = DarkTheme;
+
+	useEffect(() => {
+		hideLoading();
+	}, [hideLoading, pathname]);
+
+	return (
+		<ThemeProvider value={theme}>
+			<Stack
+				initialRouteName="(tabs)"
+				screenOptions={{
+					headerShown: true,
+					animation: 'none',
+					headerLeft: () => <AppNavigationMenu />,
+					headerStyle: { backgroundColor: theme.colors.card },
+					headerTintColor: theme.colors.text,
+					headerShadowVisible: false,
+					contentStyle: { backgroundColor: theme.colors.background },
+				}}>
+				<Stack.Screen name="(tabs)" options={{ title: 'Pokédex' }} />
+				<Stack.Screen name="pokemon/[id]" options={{ headerTitle: '', animation: 'none', contentStyle: { backgroundColor: theme.colors.background }} } />
+			</Stack>
+			<LoadingOverlay />
+		</ThemeProvider>
+	);
 }

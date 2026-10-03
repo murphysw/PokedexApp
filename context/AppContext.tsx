@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { createContext, useCallback, useContext, useEffect, useRef, useState, type ReactNode } from 'react';
+import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 
 type StatusMap = Record<string, boolean>;
 type StatusType = 'caught' | 'livingDex';
@@ -18,11 +18,20 @@ export type ListFilterSettings = { caught: StatusFilter; livingDex: StatusFilter
 
 const DEFAULT_LIST_FILTERS: ListFilterSettings = { caught: 'all', livingDex: 'all' };
 
+export type LoadingContextValue = {
+	loadingMessage: string | null;
+	showLoading: (message: string) => void;
+	hideLoading: () => void;
+};
+
 type AppContextValue = {
 	activeGame: string;
 	caughtMap: StatusMap;
 	livingDexMap: StatusMap;
 	listFilters: ListFilterSettings;
+	loadingMessage?: string | null;
+	showLoading: (message: string) => void;
+	hideLoading: () => void;
 	setActiveGame: (gameId: string) => Promise<void>;
 	setListFilters: (filters: Partial<ListFilterSettings>) => Promise<void>;
 	toggleCaught: (gameId: string, pokemonId: number) => Promise<void>;
@@ -36,6 +45,12 @@ const STORAGE_KEYS = {
 	livingDexMap: '@pokedex/livingDexMap',
 	listFilters: '@pokedex/listFilters',
 } as const;
+
+const LoadingContext = createContext<LoadingContextValue>({
+	loadingMessage: null,
+	showLoading: () => {},
+	hideLoading: () => {},
+});
 
 const AppContext = createContext<AppContextValue | undefined>(undefined);
 
@@ -70,11 +85,62 @@ function parseListFilters(value: string | null): ListFilterSettings {
 	}
 }
 
-export function AppProvider({ children }: { children: ReactNode }) {
+export function LoadingProvider({ children }: { children: ReactNode }) {
+	const [loadingMessage, setLoadingMessage] = useState<string | null>(null);
+	const loadingMessageRef = useRef<string | null>(null);
+	const showTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+	const showLoading = useCallback((message: string) => {
+		if (showTimerRef.current) clearTimeout(showTimerRef.current);
+		if (loadingMessageRef.current !== null) {
+			loadingMessageRef.current = message;
+			setLoadingMessage(message);
+			return;
+		}
+		// Debounce by 100ms so operations completing rapidly don't flicker the spinner
+		showTimerRef.current = setTimeout(() => {
+			showTimerRef.current = null;
+			loadingMessageRef.current = message;
+			setLoadingMessage(message);
+		}, 100);
+	}, []);
+
+	const hideLoading = useCallback(() => {
+		if (showTimerRef.current) {
+			clearTimeout(showTimerRef.current);
+			showTimerRef.current = null;
+		}
+		if (loadingMessageRef.current !== null) {
+			loadingMessageRef.current = null;
+			setLoadingMessage(null);
+		}
+	}, []);
+
+	useEffect(() => {
+		return () => {
+			if (showTimerRef.current) clearTimeout(showTimerRef.current);
+		};
+	}, []);
+
+	const value = useMemo(
+		() => ({ loadingMessage, showLoading, hideLoading }),
+		[loadingMessage, showLoading, hideLoading],
+	);
+
+	return <LoadingContext.Provider value={value}>{children}</LoadingContext.Provider>;
+}
+
+export function useLoading() {
+	return useContext(LoadingContext);
+}
+
+function AppDataProvider({ children }: { children: ReactNode }) {
+	const { showLoading, hideLoading } = useLoading();
 	const [activeGame, setActiveGameState] = useState('soulsilver');
 	const [caughtMap, setCaughtMap] = useState<StatusMap>({});
 	const [livingDexMap, setLivingDexMap] = useState<StatusMap>({});
 	const [listFilters, setListFiltersState] = useState<ListFilterSettings>(DEFAULT_LIST_FILTERS);
+
 	const activeGameRef = useRef(activeGame);
 	const caughtMapRef = useRef(caughtMap);
 	const livingDexMapRef = useRef(livingDexMap);
@@ -177,12 +243,43 @@ export function AppProvider({ children }: { children: ReactNode }) {
 		[updateStatus],
 	);
 
+	const value = useMemo(
+		() => ({
+			activeGame,
+			caughtMap,
+			livingDexMap,
+			listFilters,
+			showLoading,
+			hideLoading,
+			setActiveGame,
+			setListFilters,
+			toggleCaught,
+			toggleLivingDex,
+			batchUpdateStatus,
+		}),
+		[
+			activeGame,
+			caughtMap,
+			livingDexMap,
+			listFilters,
+			showLoading,
+			hideLoading,
+			setActiveGame,
+			setListFilters,
+			toggleCaught,
+			toggleLivingDex,
+			batchUpdateStatus,
+		],
+	);
+
+	return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
+}
+
+export function AppProvider({ children }: { children: ReactNode }) {
 	return (
-		<AppContext.Provider
-			value={{ activeGame, caughtMap, livingDexMap, listFilters, setActiveGame, setListFilters, toggleCaught, toggleLivingDex, batchUpdateStatus }}
-		>
-			{children}
-		</AppContext.Provider>
+		<LoadingProvider>
+			<AppDataProvider>{children}</AppDataProvider>
+		</LoadingProvider>
 	);
 }
 

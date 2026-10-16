@@ -2,12 +2,13 @@ import { useEffect, useMemo, useState } from 'react';
 import { Image } from 'expo-image';
 import { Modal, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { router, useLocalSearchParams, type Href } from 'expo-router';
+import { router, useLocalSearchParams } from 'expo-router';
 
 import pokemonData from '../../assets/data/pokemon.json';
 import { GAMES, GAME_IDS, getRegionalDexKeys, type GameId, type RegionalDexKey } from '../../constants/games';
 import { useAppContext } from '../../context/AppContext';
 import { TypeMatchupCard, type PokemonType, type TypeSelection } from '../tools/type-matchup';
+import { MoveModal } from '../../src/components/move-modal';
 import { MaxContentWidth, Spacing } from '../../src/constants/theme';
 import { useTheme } from '../../src/hooks/use-theme';
 
@@ -190,7 +191,7 @@ export async function getMovesForPokemon(pokemonId: number): Promise<PokemonMove
         pokemonMovesCache.set(pokemonId, result);
         return result;
 
-    } catch (error) {
+    } catch {
         // Return empty array if the file doesn't exist (e.g. Pokémon has no moves)
         return [];
     }
@@ -504,15 +505,11 @@ export default function PokemonDetailScreen() {
 	}[]>([]);
 
 	useEffect(() => {
-		let isMounted = true;
-
-		// Reset or exit if missing core details
 		if (!pokemon || !pokemonId || !detailGame?.versionGroupEngineKey) {
-			setLearnableMoves([]);
-			hideLoading();
 			return;
 		}
 
+		let isMounted = true;
 		showLoading('Loading move data');
 
 		getMovesForPokemon(pokemonId)
@@ -548,7 +545,9 @@ export default function PokemonDetailScreen() {
 		return () => {
 			isMounted = false;
 		};
-	}, [pokemonId, pokemon, detailGame?.versionGroupEngineKey]);
+	}, [pokemonId, pokemon, detailGame?.versionGroupEngineKey, hideLoading, showLoading]);
+
+	const activeLearnableMoves = !pokemon || !pokemonId || !detailGame?.versionGroupEngineKey ? [] : learnableMoves;
 
 
 	const gameLocations = pokemon?.locations.filter((location) => location.versions.includes(detailGameId)) ?? [];
@@ -584,10 +583,10 @@ export default function PokemonDetailScreen() {
 		{ value: 'other', label: 'Other' },
 	];
 	const moveFilters = moveFilterOptions.filter((filter) =>
-		filter.value === 'all' || learnableMoves.some(({ detail }) => filterForMethod(detail.learn_method) === filter.value),
+		filter.value === 'all' || activeLearnableMoves.some(({ detail }) => filterForMethod(detail.learn_method) === filter.value),
 	);
 	const currentMoveFilter = moveFilters.some((filter) => filter.value === moveFilter) ? moveFilter : 'all';
-	const visibleMoves = learnableMoves.filter(({ detail }) =>
+	const visibleMoves = activeLearnableMoves.filter(({ detail }) =>
 		currentMoveFilter === 'all' || filterForMethod(detail.learn_method) === currentMoveFilter,
 	);
 	const loadMoveIndex = () => {
@@ -1060,51 +1059,6 @@ function TypeMatchupModal({
 		);
 	}
 
-	function MoveModal({ move, onClose, theme }: { move: MoveRecord | null; onClose: () => void; theme: ReturnType<typeof useTheme> }) {
-	const effectDescription = move?.description || 'No effect description is available.';
-	return (
-		<Modal visible={move !== null} transparent animationType="slide" onRequestClose={onClose}>
-			<View style={styles.modalBackdrop}>
-				<Pressable style={StyleSheet.absoluteFill} onPress={onClose} accessibilityRole="button" accessibilityLabel="Close move details" />
-				<View style={[styles.modalSheet, { backgroundColor: theme.background, borderColor: theme.backgroundSelected }]}>
-					{move && (
-						<ScrollView contentContainerStyle={styles.modalContent}>
-							<View style={styles.modalHeader}>
-								<View style={styles.listCopy}>
-									<Text style={[styles.eyebrow, { color: theme.textSecondary }]}>MOVE DETAILS</Text>
-									<Text style={[styles.modalTitle, { color: theme.text }]}>{titleCase(move.name)}</Text>
-								</View>
-								<Pressable onPress={onClose} accessibilityRole="button" accessibilityLabel="Close move details" style={[styles.closeButton, { backgroundColor: theme.backgroundElement }]}>
-									<Text style={[styles.closeText, { color: theme.text }]}>Close</Text>
-								</Pressable>
-							</View>
-							<View style={styles.moveFacts}>
-								<MoveFact label="Type" value={titleCase(move.type)} theme={theme} />
-								<MoveFact label="Category" value={titleCase(move.category)} theme={theme} />
-								<MoveFact label="Power" value={move.power === null ? '—' : String(move.power)} theme={theme} />
-								<MoveFact label="Accuracy" value={move.accuracy === null ? '—' : `${move.accuracy}%`} theme={theme} />
-								<MoveFact label="PP" value={String(move.pp)} theme={theme} />
-							</View>
-							<View style={[styles.effectBox, { backgroundColor: theme.backgroundElement }]}>
-								<Text style={[styles.factLabel, { color: theme.textSecondary }]}>EFFECT</Text>
-								<Text style={[styles.effectText, { color: theme.text }]}>{effectDescription}</Text>
-							</View>
-						</ScrollView>
-					)}
-				</View>
-			</View>
-		</Modal>
-	);
-}
-
-function MoveFact({ label, value, theme }: { label: string; value: string; theme: ReturnType<typeof useTheme> }) {
-	return (
-		<View style={[styles.moveFact, { backgroundColor: theme.backgroundElement }]}>
-			<Text style={[styles.factLabel, { color: theme.textSecondary }]}>{label}</Text>
-			<Text style={[styles.factValue, { color: theme.text }]}>{value}</Text>
-		</View>
-	);
-}
 
 const styles = StyleSheet.create({
 	container: {

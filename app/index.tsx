@@ -3,7 +3,6 @@ import { Image } from 'expo-image';
 import { router } from 'expo-router';
 import {
 	FlatList,
-	Modal,
 	Pressable,
 	StyleSheet,
 	Text,
@@ -16,6 +15,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import pokemonData from '../assets/data/pokemon.json';
 import { GAMES, GAME_IDS, getRegionalDexKeys, type GameId } from '../constants/games';
 import { useAppContext, type StatusFilter } from '../context/AppContext';
+import { GamePickerModal } from '../src/components/game-picker-modal';
 import { MaxContentWidth, Spacing } from '../src/constants/theme';
 import { useTheme } from '../src/hooks/use-theme';
 
@@ -73,9 +73,6 @@ export default function PokedexListScreen() {
 	const validGameId = GAME_IDS.find((gameId) => gameId === activeGame) ?? 'soulsilver';
 	const game = GAMES[validGameId];
 	const regionalKeys = getRegionalDexKeys(game);
-
-	// Pre-create index maps outside component if possible, or memoize lookup
-	const gameKeysSet = useMemo(() => new Set(regionalKeys), [regionalKeys]);
 
 	const roster = useMemo(() => {
 		if (mode === 'national') {
@@ -537,54 +534,7 @@ function BulkAction({
 	);
 }
 
-function GamePickerModal({
-	visible,
-	activeGame,
-	onSelect,
-	onClose,
-}: {
-	visible: boolean;
-	activeGame: GameId;
-	onSelect: (gameId: GameId) => void;
-	onClose: () => void;
-}) {
-	const theme = useTheme();
-	return (
-		<Modal visible={visible} transparent animationType="slide" onRequestClose={onClose}>
-			<View style={styles.modalBackdrop}>
-				<Pressable style={StyleSheet.absoluteFill} onPress={onClose} accessibilityRole="button" accessibilityLabel="Close game picker" />
-				<View style={[styles.gameSheet, { backgroundColor: theme.background, borderColor: theme.backgroundSelected }]}>
-					<View style={styles.gameModalHeader}>
-						<View>
-							<Text style={[styles.eyebrow, { color: theme.textSecondary }]}>ACTIVE GAME</Text>
-							<Text style={[styles.gameModalTitle, { color: theme.text }]}>Choose a game</Text>
-						</View>
-						<Pressable onPress={onClose} accessibilityRole="button" accessibilityLabel="Close game picker" style={[styles.modalCloseButton, { backgroundColor: theme.backgroundElement }]}>
-							<Text style={[styles.modalCloseText, { color: theme.text }]}>Close</Text>
-						</Pressable>
-					</View>
-					<FlatList
-						data={GAME_IDS}
-							keyExtractor={(gameId) => gameId}
-							renderItem={({ item }) => {
-							const selected = item === activeGame;
-							return (
-								<Pressable
-									accessibilityRole="radio"
-									accessibilityState={{ checked: selected }}
-									onPress={() => onSelect(item)}
-									style={[styles.gameOption, { borderBottomColor: theme.backgroundSelected }]}>
-									<Text style={[styles.gameOptionText, { color: selected ? theme.text : theme.textSecondary, fontWeight: selected ? '700' : '500' }]}>{GAMES[item].displayName}</Text>
-									<Text style={[styles.gameOptionGeneration, { color: theme.textSecondary }]}>GEN {GAMES[item].generation}</Text>
-								</Pressable>
-							);
-						}}
-						/>
-				</View>
-			</View>
-		</Modal>
-	);
-}
+
 
 const styles = StyleSheet.create({
 	screen: { flex: 1 },

@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 
 import AppNavigationMenu from '@/components/app-navigation-menu';
 import LoadingOverlay from '@/components/loading-overlay';
+import TeamQuickMenu from '@/components/team-quick-menu';
 import { AppProvider, useLoading } from '../../context/AppContext';
 
 export default function RootLayout() {
@@ -30,6 +31,7 @@ function RootNavigator() {
 					headerShown: true,
 					animation: 'none',
 					headerLeft: () => <AppNavigationMenu />,
+					headerRight: () => <TeamQuickMenu />,
 					headerStyle: { backgroundColor: theme.colors.card },
 					headerTintColor: theme.colors.text,
 					headerShadowVisible: false,
@@ -37,6 +39,7 @@ function RootNavigator() {
 				}}>
 				<Stack.Screen name="(tabs)" options={{ title: 'Pokédex' }} />
 				<Stack.Screen name="pokemon/[id]" options={{ headerTitle: '', animation: 'none', contentStyle: { backgroundColor: theme.colors.background }} } />
+				<Stack.Screen name="tools/tm-list" options={{ headerTitle: 'TM / HM List', animation: 'none', contentStyle: { backgroundColor: theme.colors.background } }} />
 			</Stack>
 			<LoadingOverlay />
 		</ThemeProvider>

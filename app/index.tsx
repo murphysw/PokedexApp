@@ -53,11 +53,13 @@ export default function PokedexListScreen() {
 		activeGame,
 		caughtMap,
 		livingDexMap,
+		favoritesMap,
 		listFilters,
 		setActiveGame,
 		setListFilters,
 		toggleCaught,
 		toggleLivingDex,
+		toggleFavorite,
 		batchUpdateStatus,
 		showLoading,
 		hideLoading,
@@ -239,6 +241,7 @@ export default function PokedexListScreen() {
 		const key = statusKey(item.id);
 		const isCaught = Boolean(caughtMap[key]);
 		const isLivingDex = Boolean(livingDexMap[String(item.id)]);
+		const isFavorite = Boolean(favoritesMap[game.versionGroupEngineKey]?.includes(item.id));
 		const localDexKey = regionalKeys.find((dexKey) => item.localDexNumbers[dexKey] !== undefined);
 		const localDexNumber = localDexKey ? item.localDexNumbers[localDexKey] : item.nationalNo;
 		const isExclusive = mode === 'local' && game.exclusivePokemonIds.includes(item.id);
@@ -291,8 +294,20 @@ export default function PokedexListScreen() {
 					</View>
 				) : (
 					<View style={styles.rowActions}>
-						<StatusCheckbox label="Caught" checked={isCaught} onPress={() => void toggleCaught(validGameId, item.id)} theme={theme} />
-						<StatusCheckbox label="Living Dex" checked={isLivingDex} onPress={() => void toggleLivingDex(validGameId, item.id)} theme={theme} />
+						<Pressable
+							accessibilityRole="button"
+							accessibilityLabel={isFavorite ? `Remove ${titleCase(item.name)} from team favorites` : `Add ${titleCase(item.name)} to team favorites`}
+							onPress={() => void toggleFavorite(game.versionGroupEngineKey, item.id)}
+							hitSlop={8}
+							style={({ pressed }) => [styles.favoriteStarButton, { opacity: pressed ? 0.6 : 1 }]}>
+							<Text style={[styles.favoriteStarIcon, { color: isFavorite ? '#F59E0B' : theme.textSecondary }]}>
+								{isFavorite ? '★' : '☆'}
+							</Text>
+						</Pressable>
+						<View style={styles.statusCheckboxes}>
+							<StatusCheckbox label="Caught" checked={isCaught} onPress={() => void toggleCaught(validGameId, item.id)} theme={theme} />
+							<StatusCheckbox label="Living Dex" checked={isLivingDex} onPress={() => void toggleLivingDex(validGameId, item.id)} theme={theme} />
+						</View>
 					</View>
 				)}
 			</View>
@@ -584,7 +599,10 @@ const styles = StyleSheet.create({
 	dexNumber: { fontSize: 10 },
 	typeList: { flexDirection: 'row', flexWrap: 'wrap', gap: Spacing.two },
 	typeText: { fontSize: 10 },
-	rowActions: { width: 90, gap: Spacing.one },
+	rowActions: { flexDirection: 'row', alignItems: 'center', gap: Spacing.one },
+	statusCheckboxes: { width: 85, gap: Spacing.one },
+	favoriteStarButton: { width: 28, height: 28, alignItems: 'center', justifyContent: 'center' },
+	favoriteStarIcon: { fontSize: 20, lineHeight: 22 },
 	statusButton: { minHeight: 28, flexDirection: 'row', alignItems: 'center', gap: Spacing.one },
 	statusLabel: { fontSize: 9 },
 	statusSummary: { alignItems: 'center', gap: Spacing.one },

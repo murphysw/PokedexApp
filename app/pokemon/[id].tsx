@@ -417,7 +417,7 @@ function StatBars({ stats, baseStats, theme }: { stats: StatBlock; baseStats: St
 
 export default function PokemonDetailScreen() {
 	const theme = useTheme();
-	const { activeGame, showLoading, hideLoading } = useAppContext();
+	const { activeGame, favoritesMap, toggleFavorite, showLoading, hideLoading } = useAppContext();
 	const { id, listMode: routeListMode, regionKey: routeRegionKey } = useLocalSearchParams<{
 		id?: string | string[];
 		listMode?: string | string[];
@@ -426,13 +426,14 @@ export default function PokemonDetailScreen() {
 	const routeId = Array.isArray(id) ? id[0] : id;
 	const listModeParam = Array.isArray(routeListMode) ? routeListMode[0] : routeListMode;
 	const regionKeyParam = Array.isArray(routeRegionKey) ? routeRegionKey[0] : routeRegionKey;
-	const listMode = listModeParam === 'national' ? 'national' : 'local';
+	const listMode = listModeParam === 'favorites' ? 'favorites' : listModeParam === 'national' ? 'national' : 'local';
 	const pokemonId = Number(routeId);
 	const pokemon = Number.isInteger(pokemonId)
 		? POKEMON_RECORDS.find((record) => record.id === pokemonId)
 		: undefined;
 	const validGameId = GAME_IDS.find((gameId) => gameId === activeGame) ?? 'soulsilver';
 	const game = GAMES[validGameId];
+	const isFavorite = Boolean(pokemon && favoritesMap[game.versionGroupEngineKey]?.includes(pokemon.id));
 	const [section, setSection] = useState<SectionKey>('stats');
 	const [selectedMegaId, setSelectedMegaId] = useState<number | null>(null);
 	const [selectedMove, setSelectedMove] = useState<LearnableMove | null>(null);
@@ -560,13 +561,19 @@ export default function PokemonDetailScreen() {
 		? regionKeyParam
 		: game.regionalDexKey;
 	const navigationRoster = useMemo(() => {
+		if (listMode === 'favorites') {
+			const favoriteIds = favoritesMap[game.versionGroupEngineKey] ?? [];
+			return favoriteIds
+				.map((favId) => POKEMON_RECORDS.find((entry) => entry.id === favId))
+				.filter((entry): entry is PokemonRecord => entry !== undefined);
+		}
 		if (listMode !== 'local') return POKEMON_RECORDS;
 		
 		// Extract and filter efficiently
 		return POKEMON_RECORDS
 			.filter((entry) => entry.localDexNumbers[activeListRegion] !== undefined)
 			.sort((a, b) => a.localDexNumbers[activeListRegion] - b.localDexNumbers[activeListRegion]);
-	}, [listMode, activeListRegion]);
+	}, [listMode, activeListRegion, favoritesMap, game.versionGroupEngineKey]);
 	const navigationIndex = pokemon ? navigationRoster.findIndex((entry) => entry.id === pokemon.id) : -1;
 	const previousPokemon = navigationIndex > 0 ? navigationRoster[navigationIndex - 1] : undefined;
 	const nextPokemon = navigationIndex >= 0 ? navigationRoster[navigationIndex + 1] : undefined;
@@ -665,7 +672,26 @@ export default function PokemonDetailScreen() {
 					</View>
 					<View style={styles.header}>
 						<Text style={[styles.eyebrow, { color: theme.textSecondary }]}>{detailGame.displayName} · National #{String(pokemon.nationalNo).padStart(3, '0')}</Text>
-						<Text style={[styles.title, { color: theme.text }]}>{titleCase(pokemon.name)}</Text>
+						<View style={styles.titleRow}>
+							<Text style={[styles.title, { color: theme.text, flex: 1 }]}>{titleCase(pokemon.name)}</Text>
+							<Pressable
+								accessibilityRole="button"
+								accessibilityLabel={isFavorite ? `Remove ${titleCase(pokemon.name)} from team` : `Add ${titleCase(pokemon.name)} to team`}
+								onPress={() => void toggleFavorite(game.versionGroupEngineKey, pokemon.id)}
+								hitSlop={8}
+								style={({ pressed }) => [
+									styles.favoriteButton,
+									{
+										backgroundColor: isFavorite ? '#F59E0B' : theme.backgroundElement,
+										borderColor: isFavorite ? '#D97706' : theme.backgroundSelected,
+										opacity: pressed ? 0.7 : 1,
+									},
+								]}>
+								<Text style={[styles.favoriteStarText, { color: isFavorite ? '#000000' : theme.textSecondary }]}>
+									{isFavorite ? '★ Team' : '☆ Favorite'}
+								</Text>
+							</Pressable>
+						</View>
 						{selectedDexEntry && (
 							<Text style={[styles.regionNumber, { color: theme.textSecondary }]}>
 								Gen {selectedDexEntry.generation} · {titleCase(selectedDexEntry.key)} #{String(selectedDexEntry.number).padStart(3, '0')}
@@ -865,11 +891,11 @@ export default function PokemonDetailScreen() {
 						accessibilityLabel={previousPokemon ? `Previous Pokémon: ${titleCase(previousPokemon.name)}` : 'No previous Pokémon'}
 						onPress={() => previousPokemon && navigateToPokemon(previousPokemon.id)}
 						style={({ pressed }) => [styles.dexNavButton, { opacity: previousPokemon ? pressed ? 0.65 : 1 : 0.35 }]}>
-						<Text style={[styles.dexNavLabel, { color: theme.textSecondary }]}>PREVIOUS</Text>
+						<Text style={[styles.dexNavLabel, { color: theme.textSecondary }]}>{listMode === 'favorites' ? 'PREV IN TEAM' : 'PREVIOUS'}</Text>
 						<Text style={[styles.dexNavName, { color: theme.text }]} numberOfLines={1}>{previousPokemon ? titleCase(previousPokemon.name) : '—'}</Text>
 					</Pressable>
 					<Pressable accessibilityRole="button" onPress={() => router.navigate('/')} style={[styles.dexListButton, { backgroundColor: theme.text }]}>
-						<Text style={[styles.dexListButtonText, { color: theme.background }]}>Back to list</Text>
+						<Text style={[styles.dexListButtonText, { color: theme.background }]}>{listMode === 'favorites' ? 'All Pokémon' : 'Back to list'}</Text>
 					</Pressable>
 					<Pressable
 						disabled={!nextPokemon}
@@ -877,7 +903,7 @@ export default function PokemonDetailScreen() {
 						accessibilityLabel={nextPokemon ? `Next Pokémon: ${titleCase(nextPokemon.name)}` : 'No next Pokémon'}
 						onPress={() => nextPokemon && navigateToPokemon(nextPokemon.id)}
 						style={({ pressed }) => [styles.dexNavButton, styles.dexNavEnd, { opacity: nextPokemon ? pressed ? 0.65 : 1 : 0.35 }]}>
-						<Text style={[styles.dexNavLabel, { color: theme.textSecondary }]}>NEXT</Text>
+						<Text style={[styles.dexNavLabel, { color: theme.textSecondary }]}>{listMode === 'favorites' ? 'NEXT IN TEAM' : 'NEXT'}</Text>
 						<Text style={[styles.dexNavName, { color: theme.text }]} numberOfLines={1}>{nextPokemon ? titleCase(nextPokemon.name) : '—'}</Text>
 					</Pressable>
 			</View>
@@ -1164,4 +1190,7 @@ const styles = StyleSheet.create({
 	factValue: { fontSize: 14, fontWeight: '700' },
 	effectBox: { gap: Spacing.two, padding: Spacing.three, borderRadius: 5 },
 	effectText: { fontSize: 14, lineHeight: 21 },
+	titleRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: Spacing.two },
+	favoriteButton: { paddingHorizontal: Spacing.two, paddingVertical: 5, borderRadius: 14, borderWidth: 1 },
+	favoriteStarText: { fontSize: 12, fontWeight: '700' },
 });

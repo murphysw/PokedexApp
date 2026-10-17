@@ -28,6 +28,7 @@ type AppContextValue = {
 	activeGame: string;
 	caughtMap: StatusMap;
 	livingDexMap: StatusMap;
+	favoritesMap: Record<string, number[]>;
 	listFilters: ListFilterSettings;
 	loadingMessage?: string | null;
 	showLoading: (message: string) => void;
@@ -36,13 +37,17 @@ type AppContextValue = {
 	setListFilters: (filters: Partial<ListFilterSettings>) => Promise<void>;
 	toggleCaught: (gameId: string, pokemonId: number) => Promise<void>;
 	toggleLivingDex: (gameId: string, pokemonId: number) => Promise<void>;
+	toggleFavorite: (versionGroup: string, pokemonId: number) => Promise<void>;
 	batchUpdateStatus: (gameId: string, pokemonIds: number[], statusType: StatusType, value: boolean) => Promise<void>;
 };
+
+export type FavoritesMap = Record<string, number[]>;
 
 const STORAGE_KEYS = {
 	activeGame: '@pokedex/activeGame',
 	caughtMap: '@pokedex/caughtMap',
 	livingDexMap: '@pokedex/livingDexMap',
+	favoritesMap: '@pokedex/favoritesMap',
 	listFilters: '@pokedex/listFilters',
 } as const;
 
@@ -82,6 +87,23 @@ function parseListFilters(value: string | null): ListFilterSettings {
 		};
 	} catch {
 		return DEFAULT_LIST_FILTERS;
+	}
+}
+
+function parseFavoritesMap(value: string | null): Record<string, number[]> {
+	if (!value) return {};
+	try {
+		const parsed: unknown = JSON.parse(value);
+		if (typeof parsed !== 'object' || parsed === null || Array.isArray(parsed)) return {};
+		const result: Record<string, number[]> = {};
+		for (const [k, v] of Object.entries(parsed)) {
+			if (Array.isArray(v)) {
+				result[k] = v.filter((id): id is number => typeof id === 'number' && Number.isInteger(id));
+			}
+		}
+		return result;
+	} catch {
+		return {};
 	}
 }
 
@@ -139,11 +161,13 @@ function AppDataProvider({ children }: { children: ReactNode }) {
 	const [activeGame, setActiveGameState] = useState('soulsilver');
 	const [caughtMap, setCaughtMap] = useState<StatusMap>({});
 	const [livingDexMap, setLivingDexMap] = useState<StatusMap>({});
+	const [favoritesMap, setFavoritesMap] = useState<Record<string, number[]>>({});
 	const [listFilters, setListFiltersState] = useState<ListFilterSettings>(DEFAULT_LIST_FILTERS);
 
 	const activeGameRef = useRef(activeGame);
 	const caughtMapRef = useRef(caughtMap);
 	const livingDexMapRef = useRef(livingDexMap);
+	const favoritesMapRef = useRef(favoritesMap);
 	const listFiltersRef = useRef(listFilters);
 	const hydrationRef = useRef<Promise<void> | null>(null);
 	const mountedRef = useRef(true);
@@ -156,20 +180,24 @@ function AppDataProvider({ children }: { children: ReactNode }) {
 				AsyncStorage.getItem(STORAGE_KEYS.caughtMap),
 				AsyncStorage.getItem(STORAGE_KEYS.livingDexMap),
 				AsyncStorage.getItem(STORAGE_KEYS.listFilters),
-			]).then(([storedGame, storedCaught, storedLivingDex, storedFilters]) => {
+				AsyncStorage.getItem(STORAGE_KEYS.favoritesMap),
+			]).then(([storedGame, storedCaught, storedLivingDex, storedFilters, storedFavorites]) => {
 				if (!mountedRef.current) return;
 				const nextGame = storedGame || 'soulsilver';
 				const nextCaught = parseStatusMap(storedCaught);
 				const nextLivingDex = migrateLivingDexMap(parseStatusMap(storedLivingDex));
 				const nextFilters = parseListFilters(storedFilters);
+				const nextFavorites = parseFavoritesMap(storedFavorites);
 				activeGameRef.current = nextGame;
 				caughtMapRef.current = nextCaught;
 				livingDexMapRef.current = nextLivingDex;
 				listFiltersRef.current = nextFilters;
+				favoritesMapRef.current = nextFavorites;
 				setActiveGameState(nextGame);
 				setCaughtMap(nextCaught);
 				setLivingDexMap(nextLivingDex);
 				setListFiltersState(nextFilters);
+				setFavoritesMap(nextFavorites);
 			}).catch(() => undefined);
 		}
 		return hydrationRef.current;
@@ -243,11 +271,26 @@ function AppDataProvider({ children }: { children: ReactNode }) {
 		[updateStatus],
 	);
 
+	const toggleFavorite = useCallback(async (versionGroup: string, pokemonId: number) => {
+		await ensureHydrated();
+		const nextMap = { ...favoritesMapRef.current };
+		const currentList = nextMap[versionGroup] ?? [];
+		if (currentList.includes(pokemonId)) {
+			nextMap[versionGroup] = currentList.filter((id) => id !== pokemonId);
+		} else {
+			nextMap[versionGroup] = [...currentList, pokemonId];
+		}
+		favoritesMapRef.current = nextMap;
+		setFavoritesMap(nextMap);
+		await persist(STORAGE_KEYS.favoritesMap, JSON.stringify(nextMap));
+	}, [ensureHydrated, persist]);
+
 	const value = useMemo(
 		() => ({
 			activeGame,
 			caughtMap,
 			livingDexMap,
+			favoritesMap,
 			listFilters,
 			showLoading,
 			hideLoading,
@@ -255,12 +298,14 @@ function AppDataProvider({ children }: { children: ReactNode }) {
 			setListFilters,
 			toggleCaught,
 			toggleLivingDex,
+			toggleFavorite,
 			batchUpdateStatus,
 		}),
 		[
 			activeGame,
 			caughtMap,
 			livingDexMap,
+			favoritesMap,
 			listFilters,
 			showLoading,
 			hideLoading,
@@ -268,6 +313,7 @@ function AppDataProvider({ children }: { children: ReactNode }) {
 			setListFilters,
 			toggleCaught,
 			toggleLivingDex,
+			toggleFavorite,
 			batchUpdateStatus,
 		],
 	);

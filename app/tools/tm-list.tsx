@@ -30,6 +30,7 @@ export type TMItem = {
 	accuracy: number | null;
 	pp: number | null;
 	description: string;
+	location?: string | null;
 	pokemonIds: number[];
 };
 
@@ -87,6 +88,7 @@ export default function TMList() {
 		pp: item.pp,
 		description: item.description,
 		machine: item.machine,
+		location: item.location ?? null,
 		pokemonIds: item.pokemonIds,
 	});
 

@@ -16,6 +16,7 @@ export type MoveModalData = {
 	pp: number | null;
 	description?: string | null;
 	machine?: string | null;
+	location?: string | null;
 	pokemonIds?: readonly number[] | null;
 };
 
@@ -81,6 +82,13 @@ export function MoveModal({
 								<Text style={[styles.factLabel, { color: theme.textSecondary }]}>EFFECT</Text>
 								<Text style={[styles.effectText, { color: theme.text }]}>{effectDescription}</Text>
 							</View>
+
+							{move.location && (
+								<View style={[styles.effectBox, { backgroundColor: theme.backgroundElement }]}>
+									<Text style={[styles.factLabel, { color: theme.textSecondary }]}>LOCATION / OBTAINED</Text>
+									<Text style={[styles.effectText, { color: theme.text }]}>{move.location}</Text>
+								</View>
+							)}
 
 							{move.pokemonIds && move.pokemonIds.length > 0 && (
 								<View style={styles.learnersSection}>

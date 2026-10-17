@@ -6,6 +6,9 @@ import { useAppContext } from '../../context/AppContext';
 import { useTheme } from '../hooks/use-theme';
 import { GAMES, GAME_IDS, type GameId } from '../../constants/games';
 import pokemonData from '../../assets/data/pokemon.json';
+import { titleCase } from './move-modal';
+
+const pokeBallIcon = require('../../assets/images/poke_ball_icon.svg');
 
 // Build sprite map similar to the main list component
 const spriteContext = require.context('../../assets/sprites', false, /\.png$/);
@@ -38,7 +41,10 @@ export default function TeamQuickMenu() {
   // Resolve current game object
   const validGameId = GAME_IDS.find((id: GameId) => id === activeGame) ?? 'soulsilver';
   const game = GAMES[validGameId];
-  const favoriteIds = favoritesMap[game.versionGroupEngineKey] ?? [];
+
+  const favoriteIds = useMemo(() => {
+    return favoritesMap[game.versionGroupEngineKey] ?? [];
+  }, [favoritesMap, game.versionGroupEngineKey]);
 
   const favoriteRecords = useMemo(() => {
     return favoriteIds.map((id: number) => POKEMON_MAP[id]).filter(Boolean);
@@ -58,22 +64,31 @@ export default function TeamQuickMenu() {
         accessibilityRole="button"
         accessibilityLabel={`Team favorites, ${favoriteIds.length} Pokémon`}
         onPress={() => setModalVisible(true)}
-        style={({ pressed }) => [{ opacity: pressed ? 0.7 : 1 }]}
+        style={({ pressed }) => [styles.triggerButton, { opacity: pressed ? 0.7 : 1 }]}
       >
-        {/* Simple Pokéball emoji as icon */}
-        <Text style={{ fontSize: 24, color: theme.text }}>{'⚪'}</Text>
+        <Image
+          source={pokeBallIcon}
+          style={styles.triggerIcon}
+          contentFit="contain"
+        />
         {favoriteIds.length > 0 && (
           <View style={styles.badge}>
             <Text style={styles.badgeText}>{favoriteIds.length}</Text>
           </View>
         )}
       </Pressable>
-      <Modal visible={modalVisible} animationType="slide" transparent>
+      <Modal visible={modalVisible} animationType="slide" transparent onRequestClose={() => setModalVisible(false)}>
         <View style={styles.modalBackdrop}>
-          <View style={[styles.modalContent, { backgroundColor: theme.background }]}>
+          <Pressable
+            style={StyleSheet.absoluteFill}
+            onPress={() => setModalVisible(false)}
+            accessibilityRole="button"
+            accessibilityLabel="Close team favorites"
+          />
+          <View style={[styles.modalContent, { backgroundColor: theme.background, borderColor: theme.backgroundSelected }]}>
             <View style={styles.header}>
               <Text style={[styles.title, { color: theme.text }]}>Team Favorites</Text>
-              <Pressable onPress={() => setModalVisible(false)}>
+              <Pressable onPress={() => setModalVisible(false)} hitSlop={8}>
                 <Text style={[styles.close, { color: theme.text }]}>✕</Text>
               </Pressable>
             </View>
@@ -83,16 +98,23 @@ export default function TeamQuickMenu() {
               renderItem={({ item }) => {
                 const sprite = SPRITE_BY_ID.get(item.id);
                 return (
-                  <Pressable onPress={() => openPokemon(item.id)} style={styles.row}>
+                  <Pressable onPress={() => openPokemon(item.id)} style={[styles.row, { borderBottomColor: theme.backgroundSelected }]}>
                     {sprite ? (
                       <Image source={sprite} style={styles.sprite} />
                     ) : (
                       <Text style={[styles.fallback, { color: theme.textSecondary }]}>{item.id}</Text>
                     )}
-                    <Text style={[styles.name, { color: theme.text }]}>{item.name}</Text>
+                    <Text style={[styles.name, { color: theme.text }]}>{titleCase(item.name)}</Text>
                   </Pressable>
                 );
               }}
+              ListEmptyComponent={
+                <View style={styles.emptyContainer}>
+                  <Text style={[styles.emptyText, { color: theme.textSecondary }]}>
+                    No favorites added yet for this game.
+                  </Text>
+                </View>
+              }
             />
           </View>
         </View>
@@ -102,10 +124,19 @@ export default function TeamQuickMenu() {
 }
 
 const styles = StyleSheet.create({
+  triggerButton: {
+    padding: 4,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  triggerIcon: {
+    width: 24,
+    height: 24,
+  },
   badge: {
     position: 'absolute',
-    top: -4,
-    right: -4,
+    top: -2,
+    right: -2,
     backgroundColor: '#F59E0B',
     borderRadius: 8,
     minWidth: 16,
@@ -126,10 +157,14 @@ const styles = StyleSheet.create({
     padding: 12,
   },
   modalContent: {
+    width: '100%',
+    maxWidth: 680,
     maxHeight: '80%',
-    borderTopLeftRadius: 12,
-    borderTopRightRadius: 12,
+    alignSelf: 'center',
+    borderRadius: 12,
+    borderWidth: 1,
     padding: 12,
+    overflow: 'hidden',
   },
   header: {
     flexDirection: 'row',
@@ -164,5 +199,14 @@ const styles = StyleSheet.create({
   },
   name: {
     fontSize: 16,
+    fontWeight: '600',
+  },
+  emptyContainer: {
+    paddingVertical: 24,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  emptyText: {
+    fontSize: 14,
   },
 });

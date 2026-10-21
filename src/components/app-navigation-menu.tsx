@@ -8,6 +8,7 @@ import { useAppContext } from '../../context/AppContext';
 
 const DESTINATIONS: { label: string; href: Href }[] = [
   { label: 'Pokédex', href: '/' as Href },
+  { label: 'Locations', href: '/tools/locations' as Href },
   { label: 'TM / HM List', href: '/tools/tm-list' as Href },
   { label: 'Type Matchup', href: '/tools/type-matchup' as Href },
 ];
